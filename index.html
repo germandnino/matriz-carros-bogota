@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aire delgado · Matriz de carros usados y nuevos para Bogotá</title>
+<meta name="description" content="Comparador interactivo de 34 carros usados y cero kilómetros para Bogotá: corrección de potencia por altura a 2.600 m, costos mensuales reales en pesos, financiación, capacidad de compra y quince criterios ponderables.">
+<meta name="author" content="Estudio independiente">
+<meta name="theme-color" content="#E4E7EA">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta property="og:title" content="Aire delgado · Matriz de carros para Bogotá">
+<meta property="og:description" content="34 modelos, quince criterios ponderables y la cuenta mensual en pesos. Con la corrección de potencia que casi nadie aplica a 2.600 metros.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E4E7EA;--paper-hi:#F4F6F7;--paper-lo:#D5DADE;
+  --ink:#10151A;--ink-mid:#47535F;--ink-soft:#7E8994;
+  --rule:#BFC7CE;--rule-soft:#D2D8DD;
+  --indigo:#1E3A8F;--indigo-lite:#5570BE;
+  --signal:#A8321C;--go:#16674A;--amber:#9C6B0B;
+  --display:"Saira Condensed",Impact,sans-serif;
+  --body:"Newsreader",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+/* navegación */
+.nav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--rule);
+  padding:7px 0;box-shadow:0 2px 12px rgba(16,21,26,.05)}
+.nav-in{max-width:1180px;margin:0 auto;padding:0 28px;display:flex;align-items:center;gap:10px}
+.nav-items{display:flex;gap:3px;overflow-x:auto;flex:1;scrollbar-width:none;-ms-overflow-style:none}
+.nav-items::-webkit-scrollbar{display:none}
+.nav a{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-soft);text-decoration:none;padding:7px 9px;white-space:nowrap;border-bottom:2px solid transparent;transition:.14s}
+.nav a:hover{color:var(--ink)}
+.nav a.on{color:var(--indigo);border-bottom-color:var(--indigo);font-weight:600}
+.nav a b{font-weight:600;opacity:.5;margin-right:5px}
+.nav-all{font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;
+  background:transparent;border:1px solid var(--rule);color:var(--ink-soft);padding:6px 8px;cursor:pointer;white-space:nowrap;flex:none}
+.nav-all:hover{border-color:var(--ink);color:var(--ink)}
+@media(min-width:1420px){
+  .nav{position:fixed;top:50%;left:24px;transform:translateY(-50%);width:196px;background:transparent;
+    border:none;box-shadow:none;padding:0}
+  .nav-in{display:block;padding:0;max-width:none}
+  .nav-items{flex-direction:column;overflow:visible;gap:0;border-left:1px solid var(--rule)}
+  .nav a{padding:6px 0 6px 13px;border-bottom:none;border-left:2px solid transparent;margin-left:-1px;
+    white-space:normal;line-height:1.3}
+  .nav a.on{border-left-color:var(--indigo);border-bottom-color:transparent}
+  .nav-all{margin-top:12px;width:100%;text-align:left}
+}
+/* secciones plegables */
+.sec-head{cursor:pointer;user-select:none;position:relative;padding-right:30px}
+.sec-head:hover h2{color:var(--indigo)}
+.sec-head .caret{position:absolute;right:0;top:50%;transform:translateY(-50%);font-family:var(--mono);
+  font-size:15px;color:var(--ink-soft);transition:transform .2s}
+.sec-head[aria-expanded="false"] .caret{transform:translateY(-50%) rotate(-90deg)}
+.sec-head[aria-expanded="false"]~.sec-body{display:none}
+.sec-head[aria-expanded="false"]{margin-bottom:0}
+.sec-closed{padding-bottom:26px}
+.sec-head:focus-visible{outline:2px solid var(--indigo);outline-offset:4px}
+/* top N del leaderboard */
+.lbmore{display:flex;justify-content:center;padding:16px 0 0}
+.lbmore button{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  background:transparent;border:1px solid var(--rule);color:var(--ink-mid);padding:10px 20px;cursor:pointer;transition:.14s}
+.lbmore button:hover{border-color:var(--ink);color:var(--ink);background:var(--paper-hi)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;font-optical-sizing:auto}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+@media(max-width:640px){.wrap{padding:0 16px}}
+h1,h2,h3,h4{font-family:var(--display);font-weight:800;letter-spacing:-.01em;margin:0;text-transform:uppercase}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--indigo);font-weight:600}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.lede{font-size:21px;line-height:1.5;color:var(--ink-mid);font-weight:300}
+@media(max-width:640px){.lede{font-size:18px}}
+header.masthead{border-bottom:3px solid var(--ink);padding:22px 0 0}
+.mast-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--rule);padding-bottom:10px}
+.mast-row .eyebrow:last-child{color:var(--ink-soft)}
+h1{font-size:clamp(46px,10.5vw,132px);line-height:.84;margin:26px 0 0;letter-spacing:-.025em}
+h1 .thin{font-weight:500;color:var(--indigo)}
+.sub{display:grid;grid-template-columns:1.35fr 1fr;gap:38px;margin:24px 0 30px;align-items:start}
+@media(max-width:820px){.sub{grid-template-columns:1fr;gap:20px}}
+.byline{font-family:var(--mono);font-size:11.5px;line-height:1.75;color:var(--ink-soft);border-left:2px solid var(--indigo);padding-left:14px}
+section{padding:52px 0;border-top:1px solid var(--rule)}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(26px,4vw,40px);line-height:1}
+.sec-num{font-family:var(--mono);font-size:11px;color:var(--signal);font-weight:600;letter-spacing:.1em}
+.sec-desc{max-width:64ch;color:var(--ink-mid);font-size:16.5px;margin:10px 0 30px}
+.alt-legend{display:flex;gap:20px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--ink-mid);margin-bottom:18px;letter-spacing:.04em}
+.swatch{display:inline-block;width:22px;height:9px;vertical-align:middle;margin-right:6px}
+.sw-sea{background:repeating-linear-gradient(90deg,var(--rule) 0 3px,transparent 3px 6px);border:1px solid var(--rule)}
+.sw-na{background:var(--indigo)}.sw-tu{background:var(--signal)}.sw-mh{background:var(--amber)}.sw-ev{background:var(--go)}
+.altchart{display:flex;flex-direction:column;gap:3px}
+.altrow{display:grid;grid-template-columns:216px 1fr 78px;align-items:center;gap:12px;padding:3px 0;border-bottom:1px solid var(--rule-soft)}
+.altrow:hover{background:var(--paper-hi)}
+.altrow .nm{font-family:var(--display);font-size:14.5px;font-weight:600;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bartrack{position:relative;height:17px}
+.bar-sea{position:absolute;left:0;top:0;height:17px;border:1px solid var(--rule);background:repeating-linear-gradient(90deg,rgba(30,58,143,.10) 0 4px,transparent 4px 8px)}
+.bar-bog{position:absolute;left:0;top:0;height:17px;background:var(--indigo)}
+.altrow.Turbo .bar-bog{background:var(--signal)}
+.altrow.MHEV .bar-bog{background:var(--amber)}
+.altrow.EV .bar-bog{background:var(--go)}
+.altrow .val{font-family:var(--mono);font-size:12px;text-align:right;color:var(--ink-mid);font-weight:500}
+.altrow .val b{color:var(--ink);font-weight:600}
+@media(max-width:640px){.altrow{grid-template-columns:126px 1fr 62px;gap:7px}.altrow .nm{font-size:11.5px}.altrow .val{font-size:10.5px}}
+.presets{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.preset,.filt,.trim,.wact,.tog{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--ink-mid);padding:8px 13px;cursor:pointer;transition:.14s}
+.preset:hover,.filt:hover,.trim:hover,.wact:hover,.tog:hover{border-color:var(--ink);color:var(--ink)}
+.preset[aria-pressed="true"],.filt[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper-hi)}
+.trim[aria-pressed="true"],.tog[aria-pressed="true"]{background:var(--indigo);border-color:var(--indigo);color:#fff}
+.preset:focus-visible,.filt:focus-visible,.trim:focus-visible,.wact:focus-visible,.tog:focus-visible{outline:2px solid var(--indigo);outline-offset:2px}
+.sliders{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--rule-soft);border:1px solid var(--rule)}
+@media(max-width:900px){.sliders{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.sliders{grid-template-columns:1fr}}
+.slot{background:var(--paper-hi);padding:13px 15px 15px}
+.slot label{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-family:var(--display);font-size:13.5px;font-weight:600;text-transform:uppercase;cursor:pointer}
+.slot .wv{font-family:var(--mono);font-size:12px;color:var(--indigo);font-weight:600}
+.slot .hint{font-family:var(--body);font-size:12.5px;color:var(--ink-soft);text-transform:none;letter-spacing:0;line-height:1.35;margin:3px 0 8px;font-weight:400}
+.slot .rt{display:flex;align-items:baseline;gap:8px;white-space:nowrap}
+.slot .pct{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--ink-soft);font-weight:500;min-width:44px;text-align:right}
+.slot.zero{opacity:.5}.slot.zero .pct{color:var(--signal)}
+.slot .money{font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--go);text-transform:uppercase;margin-top:6px;display:block}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:3px;background:var(--rule);outline:none;margin:0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;height:15px;background:var(--indigo);cursor:pointer;border-radius:0;transform:rotate(45deg)}
+input[type=range]::-moz-range-thumb{width:13px;height:13px;background:var(--indigo);cursor:pointer;border:none;border-radius:0}
+input[type=range]:focus-visible{outline:2px solid var(--indigo);outline-offset:6px}
+.wpanel{border:1px solid var(--rule);border-bottom:none;background:var(--paper-hi);padding:15px 18px 0;display:flex;flex-wrap:wrap;gap:14px 20px;align-items:center;justify-content:space-between}
+.wtot{font-family:var(--display);font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;display:flex;align-items:baseline;gap:11px;color:var(--ink-mid)}
+.wtot b{font-family:var(--mono);font-size:24px;font-weight:600;color:var(--indigo);letter-spacing:-.02em}
+.wstat{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--ink-soft);text-transform:none;font-weight:400;max-width:42ch;line-height:1.4}
+.wstat.ok{color:var(--go)}.wstat.warn{color:var(--signal)}
+.wacts{display:flex;gap:6px;flex-wrap:wrap}
+.wstack{display:flex;width:100%;height:13px;background:var(--paper-lo);overflow:hidden;margin:2px 0 15px}
+.wstack i{height:100%;box-shadow:inset -1px 0 0 var(--paper-hi);transition:width .35s cubic-bezier(.2,.7,.3,1)}
+.savebox{border:1px solid var(--rule);border-top:none;background:var(--paper-hi);padding:18px}
+.saverow{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:11px}
+input[type=text]{font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;padding:8px 11px;
+  border:1px solid var(--rule);background:var(--paper);color:var(--ink);min-width:210px;flex:1 1 210px;border-radius:0}
+input[type=text]:focus{outline:2px solid var(--indigo);outline-offset:-1px;border-color:var(--indigo)}
+input[type=text]::placeholder{color:var(--ink-soft)}
+.savestat{font-family:var(--mono);font-size:10.5px;line-height:1.5;color:var(--ink-soft);margin:0 0 14px;max-width:78ch}
+.savestat.warn{color:var(--amber)}
+.savestat.ok{color:var(--go)}
+.savelist{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:2px;background:var(--rule-soft)}
+.savelist:empty{display:none}
+.scard{background:var(--paper);padding:13px 15px;border:1px solid var(--rule-soft)}
+.scard .sh{display:flex;justify-content:space-between;align-items:baseline;gap:9px;margin-bottom:6px}
+.scard .sh b{font-family:var(--display);font-size:17px;font-weight:700;text-transform:uppercase;line-height:1.1;letter-spacing:.01em}
+.scard .sh span{font-family:var(--mono);font-size:9px;color:var(--ink-soft);white-space:nowrap;letter-spacing:.04em}
+.scard .sm{font-family:var(--mono);font-size:10px;color:var(--indigo);line-height:1.5;margin-bottom:3px}
+.scard .sm2{font-family:var(--mono);font-size:9.5px;color:var(--ink-soft);line-height:1.5;margin-bottom:10px}
+.scard .sb{display:flex;gap:5px;flex-wrap:wrap}
+.scard .sb .wact{padding:5px 9px;font-size:9.5px}
+.scard .sb .wact[data-a="del"]:hover{border-color:var(--signal);color:var(--signal)}
+.scard .sb .wact[data-a="apply"]{border-color:var(--indigo);color:var(--indigo)}
+.scard .sb .wact[data-a="apply"]:hover{background:var(--indigo);color:#fff}
+/* robustez */
+.chips{display:flex;gap:5px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;padding:6px 10px 6px 8px;cursor:pointer;
+  border:1px solid var(--rule);background:transparent;color:var(--ink-soft);transition:.14s;display:inline-flex;align-items:center;gap:6px}
+.chip .dot{width:9px;height:9px;border-radius:50%;background:var(--rule);flex:none}
+.chip:hover{border-color:var(--ink);color:var(--ink)}
+.chip[aria-pressed="true"]{border-color:var(--ink);color:var(--ink);background:var(--paper-hi);font-weight:500}
+.chip:focus-visible{outline:2px solid var(--indigo);outline-offset:2px}
+.rbar{display:flex;gap:26px;flex-wrap:wrap;align-items:flex-start;margin-bottom:26px}
+.bumpwrap{border:1px solid var(--rule);background:var(--paper-hi);padding:14px 8px 6px;margin-bottom:30px}
+.bumpwrap svg{display:block;width:100%;height:auto}
+.bump-line{fill:none;stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round;opacity:.85;transition:opacity .15s,stroke-width .15s}
+.bump-g:hover .bump-line{stroke-width:3.6;opacity:1}
+.bump-g:hover text{font-weight:700}
+.bumpwrap:hover .bump-g:not(:hover) .bump-line{opacity:.22}
+.bumpwrap:hover .bump-g:not(:hover) text{opacity:.35}
+.bhead,.brow{display:grid;grid-template-columns:198px 1fr 40px 60px 54px;gap:13px;align-items:center}
+.bhead{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);
+  padding:0 0 7px;border-bottom:2px solid var(--ink)}
+.bhead span:nth-child(n+3){text-align:right}
+.brow{padding:5px 0;border-bottom:1px solid var(--rule-soft);border-left:3px solid transparent;padding-left:0}
+.brow:hover{background:var(--paper-hi)}
+.brow.solid{border-left-color:var(--go);padding-left:7px}
+.brow .bn{font-family:var(--display);font-size:14.5px;font-weight:600;text-transform:uppercase;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.15}
+.brow .bn i{font-family:var(--mono);font-size:8.5px;font-style:normal;color:var(--go);letter-spacing:.08em;display:block;margin-top:1px}
+.btrack{position:relative;height:20px}
+.btrack .ax{position:absolute;left:0;right:0;top:9.5px;height:1px;background:var(--rule-soft)}
+.bband{position:absolute;top:5px;height:10px;background:rgba(30,58,143,.12);border-left:1px solid var(--rule);border-right:1px solid var(--rule)}
+.bdot{position:absolute;top:6px;width:8px;height:8px;margin-left:-4px;border-radius:50%;box-shadow:0 0 0 1.5px var(--paper)}
+.bmed{position:absolute;top:1px;width:2px;height:18px;margin-left:-1px;background:var(--ink)}
+.brow .bv{font-family:var(--mono);font-size:11.5px;text-align:right;font-variant-numeric:tabular-nums}
+.brow .bv.med{font-weight:600;color:var(--ink)}
+.brow .bv.rng{color:var(--ink-soft);font-size:10.5px}
+.brow .bv.meta{font-weight:600;color:var(--indigo)}
+@media(max-width:760px){
+  .bhead,.brow{grid-template-columns:110px 1fr 32px 46px}
+  .bhead span:nth-child(5),.brow .bv.meta{display:none}
+  .brow .bn{font-size:11.5px}.brow .bv{font-size:10px}
+}
+@media(max-width:640px){.wtot b{font-size:20px}.wstat{max-width:100%}}
+.ctlbar{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-end;margin:0 0 18px;padding-bottom:16px;border-bottom:1px solid var(--rule)}
+.ctlgrp{display:flex;flex-direction:column;gap:7px}
+.ctlgrp .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.ctlgrp .btns{display:flex;gap:6px;flex-wrap:wrap}
+.trimnote{font-family:var(--body);font-size:14px;color:var(--ink-mid);margin:0 0 20px;max-width:70ch;font-style:italic}
+/* cost inputs */
+.cin{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--rule-soft);border:1px solid var(--rule);margin-bottom:16px}
+@media(max-width:860px){.cin{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.cin{grid-template-columns:1fr}}
+.cin .slot label{font-size:12.5px}
+.cin .slot .wv{font-size:14px;font-family:var(--mono)}
+.togs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px;align-items:center}
+.togs .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-right:4px}
+/* cost table */
+.ctab{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11.5px}
+.ctab th{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;text-align:right;padding:0 8px 7px;border-bottom:2px solid var(--ink);white-space:nowrap}
+.ctab th:first-child{text-align:left}
+.ctab td{padding:8px;text-align:right;border-bottom:1px solid var(--rule-soft);white-space:nowrap;font-variant-numeric:tabular-nums}
+.ctab td:first-child{text-align:left;font-family:var(--display);font-size:14.5px;font-weight:600;text-transform:uppercase;white-space:normal;line-height:1.1}
+.ctab tr:hover td{background:var(--paper-hi)}
+.ctab td.tot{font-weight:600;color:var(--ink);border-left:1px solid var(--rule)}
+.ctab td.des{color:var(--indigo);font-weight:600}
+.ctab .lo{color:var(--go)}.ctab .hi{color:var(--signal)}
+.cscroll{overflow-x:auto;margin-bottom:8px;-webkit-overflow-scrolling:touch}
+/* financiación */
+.flegend{display:flex;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:10px;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--ink-mid);margin:0 0 14px}
+.flegend i{display:inline-block;width:16px;height:9px;vertical-align:middle;margin-right:5px}
+.f1{background:#1E3A8F}.f2{background:#9C6B0B}.f3{background:#A8321C}.f4{background:#16674A}.f5{background:#5A4B8C}
+.frow{display:grid;grid-template-columns:186px 1fr 104px;gap:14px;align-items:center;
+  padding:9px 0;border-bottom:1px solid var(--rule-soft)}
+.frow:hover{background:var(--paper-hi)}
+.frow .fn{font-family:var(--display);font-size:14.5px;font-weight:600;text-transform:uppercase;line-height:1.1}
+.frow .fn em{font-family:var(--mono);font-size:8.5px;font-style:normal;color:var(--ink-soft);display:block;margin-top:2px;letter-spacing:.06em}
+.fbar{display:flex;height:16px;background:var(--paper-lo);overflow:hidden}
+.fbar i{height:100%;transition:width .4s cubic-bezier(.2,.7,.3,1)}
+.fsub{font-family:var(--mono);font-size:9.5px;color:var(--ink-soft);margin-top:5px;letter-spacing:.02em;line-height:1.4}
+.fsub b{color:var(--ink);font-weight:600}
+.fsub .r-ok{color:var(--go);font-weight:600}
+.fsub .r-mid{color:var(--amber);font-weight:600}
+.fsub .r-bad{color:var(--signal);font-weight:600}
+.frow .fv{font-family:var(--mono);font-size:13px;font-weight:600;text-align:right;color:var(--ink);line-height:1.2}
+.frow .fv small{display:block;font-size:9px;font-weight:400;color:var(--ink-soft);letter-spacing:.05em}
+@media(max-width:700px){
+  .frow{grid-template-columns:104px 1fr 78px;gap:9px}
+  .frow .fn{font-size:11.5px}.frow .fv{font-size:11px}.fsub{font-size:8.5px}
+}
+/* capacidad de compra */
+.ihead{display:flex;gap:2px;flex-wrap:wrap;background:var(--rule-soft);border:1px solid var(--rule);margin-bottom:18px}
+.ibox{flex:1 1 160px;background:var(--paper-hi);padding:14px 16px}
+.ibox .k{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:4px}
+.ibox .n{font-family:var(--display);font-size:29px;font-weight:800;line-height:1;letter-spacing:-.01em}
+.ibox .n.ok{color:var(--go)}.ibox .n.no{color:var(--signal)}
+.ibox .d{font-family:var(--body);font-size:12.5px;color:var(--ink-mid);line-height:1.35;margin-top:5px}
+.irow{display:grid;grid-template-columns:174px 1fr 102px 84px;gap:13px;align-items:center;padding:8px 0;border-bottom:1px solid var(--rule-soft)}
+.irow:hover{background:var(--paper-hi)}
+.irow.s-no{opacity:.45}
+.irow .in{font-family:var(--display);font-size:14px;font-weight:600;text-transform:uppercase;line-height:1.1}
+.irow .in em{font-family:var(--mono);font-size:8.5px;font-style:normal;color:var(--ink-soft);display:block;margin-top:2px;letter-spacing:.04em}
+.itrack{position:relative;height:15px;background:var(--paper-lo);overflow:visible}
+.ibar{position:absolute;left:0;top:0;height:100%;background:var(--go);transition:width .4s cubic-bezier(.2,.7,.3,1)}
+.s-mid .ibar{background:var(--amber)}
+.s-no .ibar{background:var(--signal)}
+.iline{position:absolute;top:-5px;height:25px;width:2px;margin-left:-1px;background:var(--ink);z-index:2}
+.irow .iv{font-family:var(--mono);font-size:12.5px;text-align:right;font-weight:600;line-height:1.2}
+.irow .iv small{display:block;font-size:8.5px;font-weight:400;color:var(--ink-soft);letter-spacing:.04em}
+.itag{font-family:var(--mono);font-size:8.5px;letter-spacing:.06em;text-align:center;padding:4px 3px;border:1px solid;text-transform:uppercase;line-height:1.2}
+.itag.ok{color:var(--go);border-color:var(--go)}
+.itag.mid{color:var(--amber);border-color:var(--amber)}
+.itag.no{color:var(--signal);border-color:var(--signal)}
+@media(max-width:700px){
+  .irow{grid-template-columns:96px 1fr 74px 62px;gap:8px}
+  .irow .in{font-size:11px}.irow .iv{font-size:10.5px}.itag{font-size:7.5px}
+  .ibox .n{font-size:23px}
+}
+@media(max-width:760px){.ctab{font-size:10.5px}.ctab td:first-child{font-size:12px}}
+.lb-head{display:grid;grid-template-columns:52px 1fr 116px 82px 118px 30px;gap:12px;padding:0 10px 7px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);border-bottom:2px solid var(--ink)}
+.row{display:grid;grid-template-columns:52px 1fr 116px 82px 118px 30px;gap:12px;align-items:center;padding:11px 10px;border-bottom:1px solid var(--rule-soft);cursor:pointer;border-left:3px solid transparent;transition:background .14s,border-color .14s}
+.row:hover{background:var(--paper-hi);border-left-color:var(--indigo)}
+.row[aria-expanded="true"]{background:var(--paper-hi);border-left-color:var(--signal)}
+.rk{font-family:var(--display);font-size:27px;font-weight:800;line-height:1}
+.row>span{min-width:0}
+.row.top .rk{color:var(--indigo)}
+.row.top .meter i{background:var(--ink)}
+.cell-nm{overflow:hidden}
+.rk small{font-family:var(--mono);font-size:9.5px;font-weight:500;display:block;margin-top:2px;letter-spacing:.05em}
+.up{color:var(--go)}.down{color:var(--signal)}.same{color:var(--ink-soft)}
+.car-nm{font-family:var(--display);font-size:19px;font-weight:700;text-transform:uppercase;line-height:1.05;display:block;overflow-wrap:anywhere}
+.tag{font-family:var(--mono);font-size:9px;letter-spacing:.11em;padding:2px 5px;margin-left:7px;vertical-align:2px;font-weight:600;border:1px solid}
+.tag.nuevo{color:#fff;background:var(--go);border-color:var(--go)}
+.tag.usado{color:var(--ink-soft);border-color:var(--rule)}
+.tag.warn{color:#fff;background:var(--signal);border-color:var(--signal)}
+.car-meta{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);letter-spacing:.03em;margin-top:2px}
+.price{font-family:var(--mono);font-size:12.5px;font-weight:500;line-height:1.35}
+.price .mo{display:block;font-size:12px;color:var(--indigo);font-weight:600}
+.price small{display:block;font-size:9px;color:var(--ink-soft);letter-spacing:.05em}
+.score{font-family:var(--display);font-size:25px;font-weight:800;text-align:right;line-height:1;white-space:nowrap}
+.score small{display:block;font-family:var(--mono);font-size:8px;font-weight:500;color:var(--ink-soft);letter-spacing:.08em;margin-top:2px}
+.meter{height:7px;background:var(--paper-lo);position:relative;overflow:hidden}
+.meter i{position:absolute;left:0;top:0;height:100%;background:var(--indigo);transition:width .5s cubic-bezier(.2,.7,.3,1)}
+.chev{font-family:var(--mono);font-size:13px;color:var(--ink-soft);text-align:center}
+@media(max-width:860px){
+  .lb-head{grid-template-columns:42px 1fr 92px 62px;gap:8px}
+  .lb-head span:nth-child(5),.lb-head span:nth-child(6){display:none}
+  .row{grid-template-columns:42px 1fr 92px 62px;gap:8px}
+  .row .meter,.row .chev{display:none}
+  .car-nm{font-size:15px}.rk{font-size:21px}.score{font-size:20px}.price{font-size:10.5px}
+}
+.dossier{padding:6px 0 26px;display:none}
+.row[aria-expanded="true"] + .dossier{display:block}
+.dos-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;padding:18px 14px 0;border-top:1px solid var(--rule)}
+@media(max-width:760px){.dos-grid{grid-template-columns:1fr;gap:18px}}
+.spec{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;font-family:var(--mono);font-size:12px}
+.spec dt{color:var(--ink-soft);letter-spacing:.03em;white-space:nowrap}
+.spec dd{margin:0;font-weight:500;text-align:right}
+.spec dd.big{color:var(--indigo);font-weight:600}
+.spec.bill dt{padding-top:2px}
+.spec.bill .sep{grid-column:1/-1;border-top:1px solid var(--rule);margin:6px 0 4px}
+.flags{margin:0;padding:0;list-style:none}
+.flags li{position:relative;padding-left:19px;margin-bottom:7px;font-size:14.5px;line-height:1.4;color:var(--ink-mid)}
+.flags li:before{content:"▲";position:absolute;left:0;top:1px;font-size:9px;color:var(--signal)}
+.flags.good li:before{content:"●";color:var(--go);font-size:8px;top:3px}
+.dos-h{font-family:var(--display);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:5px;margin-bottom:11px;font-weight:600}
+.ladder{font-size:14.5px;line-height:1.45;color:var(--ink-mid);margin:0 0 14px}
+.dispbar{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);margin-bottom:16px}
+.dispbar .t{flex:1;height:6px;background:var(--paper-lo);position:relative}
+.dispbar .t i{position:absolute;left:0;top:0;height:100%;background:var(--signal)}
+.verdict{grid-column:1/-1;font-size:16.5px;line-height:1.55;border-left:3px solid var(--indigo);padding:2px 0 2px 16px;color:var(--ink);font-style:italic;font-weight:300}
+.catbars{display:grid;grid-template-columns:repeat(2,1fr);gap:3px 20px}
+@media(max-width:520px){.catbars{grid-template-columns:1fr}}
+.cb{display:grid;grid-template-columns:1fr 46px 26px;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;color:var(--ink-mid);padding:2px 0}
+.cb .t{height:6px;background:var(--paper-lo);position:relative}
+.cb .t i{position:absolute;left:0;top:0;height:100%;background:var(--indigo-lite)}
+.cb .v{text-align:right;font-weight:600;color:var(--ink)}
+.cb .v.shift{color:var(--signal)}
+.cat-tabs{display:flex;flex-wrap:wrap;gap:2px;background:var(--rule-soft);border:1px solid var(--rule);margin-bottom:24px}
+.cat-tab{flex:1 1 auto;min-width:126px;background:var(--paper-hi);border:none;cursor:pointer;padding:11px 12px;text-align:left;font-family:var(--display);font-size:13px;font-weight:600;text-transform:uppercase;color:var(--ink-mid);transition:.14s}
+.cat-tab:hover{color:var(--ink);background:#fff}
+.cat-tab[aria-selected="true"]{background:var(--ink);color:var(--paper-hi)}
+.cat-tab:focus-visible{outline:2px solid var(--indigo);outline-offset:-2px}
+.cat-body{display:grid;grid-template-columns:.9fr 1.6fr;gap:34px}
+@media(max-width:840px){.cat-body{grid-template-columns:1fr;gap:22px}}
+.cat-why{font-size:16px;line-height:1.55;color:var(--ink-mid)}
+.cat-why h3{font-size:24px;margin-bottom:10px;line-height:1.05}
+.crow{display:grid;grid-template-columns:30px 1fr 120px 44px 62px;gap:11px;align-items:center;padding:7px 6px;border-bottom:1px solid var(--rule-soft);font-size:14px}
+.crow:hover{background:var(--paper-hi)}
+.crow .cr{font-family:var(--mono);font-size:11px;color:var(--ink-soft);font-weight:600}
+.crow .cn{font-family:var(--display);font-size:15px;font-weight:600;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.crow .cv{font-family:var(--mono);font-size:12px;font-weight:600;text-align:right}
+.crow .cs{font-family:var(--mono);font-size:10px;text-align:right}
+.ct{height:6px;background:var(--paper-lo);position:relative}
+.ct i{position:absolute;left:0;top:0;height:100%;background:var(--ink);transition:width .4s}
+@media(max-width:640px){.crow{grid-template-columns:26px 1fr 44px 58px;gap:7px;font-size:12px}.crow .ct{display:none}.crow .cn{font-size:12.5px}}
+.notes{columns:2;column-gap:38px;font-size:15px;line-height:1.6;color:var(--ink-mid)}
+@media(max-width:760px){.notes{columns:1}}
+.notes p{margin:0 0 14px;break-inside:avoid}
+.notes strong{color:var(--ink);font-weight:500}
+.callout{border:1px solid var(--ink);padding:20px 22px;margin:0 0 26px;background:var(--paper-hi)}
+.callout .eyebrow{display:block;margin-bottom:8px}
+.callout p{margin:0;font-size:16px;line-height:1.55;color:var(--ink-mid)}
+.callout p+p{margin-top:11px}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--rule);border:1px solid var(--rule);margin-bottom:26px}
+@media(max-width:640px){.vs{grid-template-columns:1fr}}
+.vs>div{background:var(--paper-hi);padding:20px 22px}
+.vs h4{font-size:19px;margin-bottom:4px}
+.vs .amt{font-family:var(--mono);font-size:11px;color:var(--indigo);letter-spacing:.08em;margin-bottom:11px}
+.vs ul{margin:0;padding-left:17px;font-size:14.5px;line-height:1.45;color:var(--ink-mid)}
+.vs li{margin-bottom:6px}
+.spread{display:flex;flex-direction:column;gap:3px;margin-bottom:26px}
+.sprow{display:grid;grid-template-columns:230px 1fr 62px;align-items:center;gap:12px;padding:4px 0;border-bottom:1px solid var(--rule-soft)}
+.sprow .n{font-family:var(--display);font-size:14.5px;font-weight:600;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sprow .t{height:9px;background:var(--paper-lo);position:relative}
+.sprow .t i{position:absolute;left:0;top:0;height:100%;background:var(--signal)}
+.sprow .v{font-family:var(--mono);font-size:11px;text-align:right;color:var(--ink-mid)}
+@media(max-width:640px){.sprow{grid-template-columns:140px 1fr 50px;gap:8px}.sprow .n{font-size:11.5px}.sprow .v{font-size:10px}}
+footer{border-top:3px solid var(--ink);padding:22px 0 60px;font-family:var(--mono);font-size:11px;color:var(--ink-soft);line-height:1.7}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<noscript>
+  <div style="max-width:640px;margin:60px auto;padding:24px;border:1px solid #10151A;background:#F4F6F7;font-family:Georgia,serif;line-height:1.6">
+    <strong style="font-family:Impact,sans-serif;text-transform:uppercase;letter-spacing:.02em">Este documento necesita JavaScript</strong>
+    <p style="margin:10px 0 0;color:#47535F">Toda la matriz —los puntajes ponderados, el motor de costos, la financiación y los gráficos— se calcula en tu navegador. Nada se envía a ningún servidor. Activa JavaScript para usarlo.</p>
+  </div>
+</noscript>
+<nav class="nav" id="nav" aria-label="Secciones del documento">
+  <div class="nav-in"><div class="nav-items" id="navitems"></div><button class="nav-all" id="navall">Contraer todo</button></div>
+</nav>
+<div class="wrap">
+<header class="masthead">
+  <div class="mast-row">
+    <span class="eyebrow">Estudio comparativo · Bogotá</span>
+    <span class="eyebrow">34 modelos · 15 criterios · cuenta mensual en pesos</span>
+  </div>
+  <h1>Aire<br><span class="thin">delgado</span></h1>
+  <div class="sub">
+    <p class="lede">Bogotá está a 2.600 metros: un motor atmosférico entrega una cuarta parte menos de potencia que en la ficha. Sobre esa corrección van otras tres que casi nadie hace — poner a competir de frente lo usado contra lo nuevo, reconocer que el nombre del modelo no dice qué carro estás comprando, y traducir cuatro de los criterios a lo único que de verdad se compara: pesos al mes.</p>
+    <div class="byline">
+      Combustible, SOAT, impuesto, taller, llantas,<br>
+      seguro y depreciación, calculados sobre<br>
+      tarifas vigentes de 2026 y tu kilometraje.<br>
+      Usados: 2017–2025, menos de 50.000 km.<br>
+      Nuevos: precios de lista de julio de 2026.<br>
+      <span style="color:var(--signal)">Cifras de referencia para comparar,<br>no cotizaciones.</span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="sec-head"><span class="sec-num">01</span><h2>Los pesos son tuyos</h2></div>
+  <p class="sec-desc">Empieza aquí. Primero calibra tu escenario real de uso — los cuatro criterios marcados en verde salen directamente de estas cifras y se recalculan solos. Después reparte los pesos: no tienen que sumar 100, el cálculo normaliza. Lo que manda es el <strong>porcentaje efectivo</strong> junto a cada deslizador. Cuando llegues a una combinación que te sirva, guárdala con un nombre; la vas a necesitar en la prueba de robustez.</p>
+  <div class="cin" id="costinputs"></div>
+  <div class="togs" id="togs">
+    <span class="lbl">Incluir en el costo</span>
+    <button class="tog" data-k="seguro" aria-pressed="true">Seguro todo riesgo</button>
+    <button class="tog" data-k="deprec" aria-pressed="true">Depreciación</button>
+  </div>
+  <div class="presets" id="presets"></div>
+  <div class="wpanel">
+    <span class="wtot">Suma de pesos <b id="wtotal">100</b></span>
+    <span class="wstat" id="wstat"></span>
+    <span class="wacts">
+      <button class="wact" id="wnorm">Ajustar a 100</button>
+      <button class="wact" id="wreset">Restablecer</button>
+    </span>
+    <span class="wstack" id="wstack" aria-hidden="true"></span>
+  </div>
+  <div class="sliders" id="sliders"></div>
+  <div class="savebox">
+    <div class="saverow">
+      <input type="text" id="cfgname" placeholder="Nombre de la configuración" maxlength="44" aria-label="Nombre de la configuración">
+      <button class="wact" id="cfgsave">Guardar actual</button>
+      <button class="wact" id="cfgcopy">Copiar código</button>
+      <button class="wact" id="cfgpaste">Pegar código</button>
+      <button class="wact" id="cfgdown">Descargar</button>
+      <button class="wact" id="cfgup">Cargar archivo</button>
+      <input type="file" id="cfgfile" accept=".json,application/json" hidden>
+    </div>
+    <p class="savestat" id="savestat"></p>
+    <div class="savelist" id="savelist"></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">02</span><h2>Tabla general</h2></div>
+  <p class="sec-desc">Toca cualquier fila para abrir la ficha completa con su cuenta mensual desglosada. La flecha bajo la posición marca cuánto se movió respecto al orden por defecto.</p>
+  <div class="ctlbar">
+    <div class="ctlgrp"><span class="lbl">Mercado</span><span class="btns" id="filters"></span></div>
+    <div class="ctlgrp"><span class="lbl">Tren motriz</span><span class="btns" id="ptbtns"></span></div>
+    <div class="ctlgrp"><span class="lbl">Nivel de equipamiento</span><span class="btns" id="trims"></span></div>
+    <div class="ctlgrp"><span class="lbl">Cuántas ver</span><span class="btns" id="lbtop"></span></div>
+  </div>
+  <p class="trimnote" id="ptnote"></p>
+  <p class="trimnote" id="trimnote"></p>
+  <div class="lb">
+    <div class="lb-head"><span>Pos.</span><span>Modelo</span><span>Precio · mes</span><span>Puntaje</span><span>Perfil</span><span></span></div>
+    <div id="board"></div>
+    <div class="lbmore" id="lbmore"></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">03</span><h2>Prueba de robustez</h2></div>
+  <p class="sec-desc">Ganar con una configuración no prueba nada: cualquier carro es el mejor si eliges bien el criterio. Lo que sí dice algo es aguantar arriba con prioridades distintas. Abajo, cada configuración vuelve a correr la matriz completa y se traza dónde cae cada carro. <strong>Franja corta y pegada a la izquierda</strong> significa que el resultado no depende de lo que valores. <strong>Franja larga</strong> significa que ese carro es una apuesta a una prioridad específica, y más vale que sea la tuya.</p>
+  <div class="rbar">
+    <div class="ctlgrp"><span class="lbl">Mercado</span><div class="btns" id="rfilt"></div></div>
+    <div class="ctlgrp"><span class="lbl">Tren motriz</span><div class="btns" id="ptbtns2"></div></div>
+    <div class="ctlgrp"><span class="lbl">Configuraciones en juego</span><div class="chips" id="rchips"></div></div>
+    <div class="ctlgrp"><span class="lbl">Ordenar por</span><div class="btns" id="rsort"></div></div>
+  </div>
+  <div class="bumpwrap" id="bumpwrap"></div>
+  <div class="bhead"><span>Modelo</span><span>Posición en cada configuración →</span><span>Med.</span><span>Rango</span><span>Puntaje</span></div>
+  <div id="bands"></div>
+  <p class="trimnote" id="rnote"></p>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">04</span><h2>Criterio por criterio</h2></div>
+  <div class="cat-tabs" id="cattabs" role="tablist"></div>
+  <div class="cat-body">
+    <div class="cat-why" id="catwhy"></div>
+    <div class="cat-list" id="catlist"></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">05</span><h2>La cuenta mensual</h2></div>
+  <p class="sec-desc">Todo lo demás son puntajes. Esto es plata: siete rubros calculados sobre tarifas vigentes de 2026 y tu kilometraje real. Los controles que alimentan este cálculo están arriba, junto a los pesos, porque cuatro de los quince criterios salen directamente de estas cifras.</p>
+  <div class="cscroll">
+    <table class="ctab">
+      <thead><tr>
+        <th>Modelo</th><th>Combustible</th><th>Taller + llantas</th><th>SOAT + impuesto + RTM</th>
+        <th>Seguro</th><th>Depreciación</th><th>Desembolso</th><th>Costo real</th>
+      </tr></thead>
+      <tbody id="costbody"></tbody>
+    </table>
+  </div>
+  <p class="trimnote" id="costnote"></p>
+  <div class="callout">
+    <span class="eyebrow">Desembolso no es lo mismo que costo</span>
+    <p><strong>Desembolso</strong> es la plata que sale del bolsillo cada mes: tanqueada, taller, llantas, SOAT, impuesto, revisión y seguro. Es lo que sientes.</p>
+    <p><strong>Costo real</strong> suma la depreciación, que es plata que pierdes sin verla salir. En este segmento suele ser el rubro más grande de todos — más que la gasolina, más que el taller, más que todo lo demás junto. Apágala con el botón de arriba y vas a ver cómo se reordena media tabla: esa diferencia es exactamente el costo invisible de cada carro.</p>
+  </div>
+
+  <h3 style="font-size:23px;margin:38px 0 8px">Y si lo financias</h3>
+  <p class="sec-desc" style="margin-bottom:22px">Casi nadie paga de contado, y la cuota del crédito suele ser el rubro más grande de todos. Aquí la barra completa es tu salida de caja mensual: cuota, tanqueada, taller, llantas y pólizas, todo junto. Debajo de cada barra va lo que no se ve en la cuota: la inicial que tienes que tener guardada y cuántas veces terminas pagando el precio del carro.</p>
+  <div class="cin" id="fininputs"></div>
+  <div class="togs" id="fintogs">
+    <span class="lbl">Modalidad</span>
+    <button class="tog" data-f="on" aria-pressed="true">Financiado</button>
+    <span class="lbl" style="margin-left:10px">Mercado</span>
+    <span class="btns" id="finmkt"></span>
+    <span class="lbl" style="margin-left:10px">Ordenar</span>
+    <span class="btns" id="finsort"></span>
+  </div>
+  <div class="flegend">
+    <span><i class="f1"></i>Cuota del crédito</span>
+    <span><i class="f2"></i>Combustible</span>
+    <span><i class="f3"></i>Taller y llantas</span>
+    <span><i class="f4"></i>SOAT, impuesto y revisión</span>
+    <span><i class="f5"></i>Seguro</span>
+  </div>
+  <div id="finrows"></div>
+  <p class="trimnote" id="finnote"></p>
+  <div class="callout">
+    <span class="eyebrow">La prueba del 1,30</span>
+    <p>Una regla sencilla del mercado: divide todo lo que vas a desembolsar —inicial más la suma de las cuotas— entre el precio del carro. Con plazo razonable y buena tasa, ese múltiplo debería quedar entre 1,15 y 1,30. Por encima de 1,40 el negocio se torció, casi siempre por estirar el plazo. Cada fila muestra su múltiplo, en verde, ámbar o rojo.</p>
+    <p>Alargar el plazo baja la cuota y sube el múltiplo. Es la palanca que más ofrecen los bancos y la que más caro cobra: mueve el deslizador de 60 a 84 meses y mira cómo bajan todas las barras mientras los múltiplos se ponen rojos.</p>
+  </div>
+
+  <h3 style="font-size:23px;margin:38px 0 8px">¿A qué puedes aspirar?</h3>
+  <p class="sec-desc" style="margin-bottom:22px">La pregunta que ordena todas las anteriores. Los bancos aprueban por dos filtros a la vez: que la cuota nueva más tus deudas actuales no pase cierto porcentaje de tus ingresos, y que tengas la inicial guardada. Pon tus números y la línea negra vertical marca hasta dónde llegas. Todo lo que quede a la derecha de esa línea está fuera de tu alcance con estas condiciones.</p>
+  <div class="cin" id="inginputs"></div>
+  <div class="ihead" id="ingsum"></div>
+  <div id="ingrows"></div>
+  <p class="trimnote" id="ingnote"></p>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">06</span><h2>La corrección que nadie aplica</h2></div>
+  <p class="sec-desc">A 2.600 m la densidad del aire cae cerca de 26 %. Un motor atmosférico pierde potencia casi en la misma proporción porque no puede meter más aire del que hay. Un turbo comprime el aire antes de meterlo. Un motor eléctrico no respira.</p>
+  <div class="alt-legend">
+    <span><span class="swatch sw-sea"></span>Al nivel del mar</span>
+    <span><span class="swatch sw-na"></span>Atmosférico</span>
+    <span><span class="swatch sw-tu"></span>Turbo</span>
+    <span><span class="swatch sw-mh"></span>Híbrido ligero</span>
+    <span><span class="swatch sw-ev"></span>Eléctrico</span>
+  </div>
+  <div class="altchart" id="altchart"></div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">07</span><h2>El nombre del modelo miente</h2></div>
+  <p class="sec-desc">Un Onix de acceso trae un 1.0 atmosférico; un Onix RS trae un 1.0 turbo. Un Kwid Life trae dos airbags y ningún control de estabilidad; un Kwid Intens trae cuatro y sí lo trae. Son el mismo nombre y el mismo año, y no son el mismo carro. Abajo, qué tanto se abre cada gama entre su versión de entrada y su tope.</p>
+  <div class="spread" id="spread"></div>
+  <div class="callout">
+    <span class="eyebrow">Cómo se resolvió en la tabla</span>
+    <p>Un <strong>eje de equipamiento</strong> con tres posiciones que recalcula precio y puntajes de las 34 opciones al mismo tiempo, en proporción a lo abierta que sea cada gama. Los puntajes de las fichas corresponden a la <strong>versión intermedia</strong>. Y un criterio propio — <strong>consistencia de versiones</strong> — que premia a los modelos donde el nombre sí dice lo que trae, porque en el usado una gama muy abierta es donde más se compra gato por liebre.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">08</span><h2>Nuevo contra usado</h2></div>
+  <div class="vs">
+    <div>
+      <h4>Lo que compra $60 millones usado</h4>
+      <div class="amt">SEGMENTO B COMPLETO · 2020–2023 · &lt;50.000 KM</div>
+      <ul>
+        <li>Mazda 2, Toyota Yaris, VW Virtus, Onix turbo, Nissan Versa</li>
+        <li>110–150 hp, seis o siete airbags, control de estabilidad</li>
+        <li>Baúles de 440 a 521 litros en las versiones sedán</li>
+        <li>Depreciación ya absorbida por el dueño anterior</li>
+        <li><strong>A cambio:</strong> historia desconocida, garantía vencida, revisión técnico-mecánica desde ya, y la duda de qué versión es realmente</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Lo que compra $60 millones nuevo</h4>
+      <div class="amt">CITY CAR DE ENTRADA · 0 KM · JULIO 2026</div>
+      <ul>
+        <li>Kwid, Picanto, Grand i10, o un eléctrico urbano chino</li>
+        <li>65–80 hp, que en Bogotá son 48–62 hp reales</li>
+        <li>Baúles de 45 a 378 litros según el modelo</li>
+        <li>Sin revisión técnico-mecánica durante los primeros años</li>
+        <li><strong>A cambio:</strong> el golpe de depreciación completo, que en el primer año es el gasto más grande que vas a tener</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout">
+    <span class="eyebrow">La única carta que lo usado no puede igualar</span>
+    <p>Los vehículos híbridos y eléctricos están exentos de pico y placa en Bogotá, y la exención está amparada en el Plan de Desarrollo 2024–2027, así que no puede quitarse por decreto de la Alcaldía. Eso son dos días adicionales de circulación por semana que ningún usado a gasolina de esta lista puede ofrecer, a ningún precio.</p>
+    <p>La advertencia: el alcalde ya dijo públicamente que la categoría de híbrido mete tecnologías muy distintas en el mismo saco, y apuntó a los híbridos ligeros. Si algún día el Concejo ajusta la norma, un mild hybrid es lo primero que perdería el beneficio. Un eléctrico puro, no.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="sec-num">09</span><h2>Cómo leer esto</h2></div>
+  <div class="callout">
+    <span class="eyebrow">Tarifas usadas en el motor de costos</span>
+    <p><strong>Gasolina corriente en Bogotá:</strong> alrededor de $15.900 por galón según el ajuste de la CREG de abril de 2026, con presión al alza durante el segundo semestre. <strong>Extra:</strong> precio liberado, históricamente entre $3.000 y $5.000 por encima de la corriente. <strong>Energía eléctrica:</strong> del orden de $750 a $900 por kWh para estratos sin subsidio en el mercado de Enel Bogotá. Los tres son editables arriba porque se mueven todo el tiempo.</p>
+    <p><strong>SOAT 2026:</strong> automóvil particular de menos de 1.500 cc con menos de diez años, $447.300; entre 1.500 y 2.500 cc, $544.700. Campero o camioneta de menos de 1.500 cc, $792.800; entre 1.500 y 2.500 cc, $946.600. Esa diferencia de clase vale medio millón de pesos al año y depende de cómo esté registrado el carro en la tarjeta de propiedad, no de cómo se vea.</p>
+    <p><strong>Impuesto vehicular:</strong> 1,5 % sobre avalúos hasta $57.349.000 y 2,5 % de ahí hasta $129 millones. Los eléctricos en Bogotá tienen tarifa tope de 1,2 % y 60 % de descuento durante cinco años si se matriculan nuevos en la ciudad.</p>
+  </div>
+  <div class="notes">
+    <p><strong>Las tasas de crédito.</strong> Los valores de arranque —19 % E.A. para nuevo y 22 % para usado, 30 % de inicial a 60 meses— reflejan el mercado de 2026, donde las tasas de financiación vehicular subieron entre 200 y 300 puntos básicos en los primeros meses del año y pasaron de un rango de 14 %–22 % a uno de 17 %–24,5 %. Los usados pagan sistemáticamente más que los nuevos y varias entidades no financian modelos de más de diez años, lo que aquí se señala en las filas afectadas. La tasa que te den a ti depende de tu perfil crediticio: pide cotización formal a tres o cuatro bancos con exactamente la misma configuración de inicial y plazo antes de comparar.</p>
+    <p><strong>Cuota y depreciación no se suman.</strong> La barra de financiación muestra salida de caja: lo que sale del bolsillo cada mes. La tabla de arriba muestra costo económico, que incluye depreciación. No los sumes: buena parte de la cuota es abono a capital, no gasto. El gasto puro de financiar son los intereses, y esos sí van encima de todo lo demás.</p>
+    <p><strong>Dónde viven tus configuraciones.</strong> Cada configuración guarda los quince pesos, el kilometraje, los tres precios de combustible y energía, el nivel de equipamiento, el filtro de mercado y los interruptores de seguro y depreciación. Se almacenan en este navegador, en este equipo: no viajan solas a otro computador ni a otro perfil. Para llevarlas contigo o compartirlas, «Copiar código» genera un texto que reconstruye la configuración completa al pegarlo, y «Descargar» produce un archivo con todas. Si el navegador bloquea el almacenamiento —pasa en algunas vistas embebidas y en modo incógnito—, el documento lo detecta y te avisa: las configuraciones siguen funcionando durante la sesión, pero conviene exportarlas antes de cerrar.</p>
+    <p><strong>Los cuatro criterios en pesos.</strong> Consumo, mantenimiento, costo fijo y depreciación ya no son estimaciones cualitativas: son el costo mensual calculado, normalizado de 0 a 100 contra el mejor y el peor de la flota. Eso significa que cambian cuando cambias el kilometraje o el precio del combustible, y que el 100 y el 0 siempre existen — son relativos a este grupo de 34, no absolutos.</p>
+    <p><strong>El avalúo no es el precio.</strong> El impuesto y el seguro se calculan sobre el avalúo oficial del Ministerio de Transporte, que aquí se aproxima al 90 % del precio de mercado para usados y al 95 % del precio de lista para nuevos. Es una aproximación razonable para comparar, pero el número exacto solo lo da SIBGA por marca, línea, modelo y cilindraje. Consúltalo antes de cerrar.</p>
+    <p><strong>Mantenimiento y llantas.</strong> El taller se estima por marca y complejidad mecánica a partir de costos de servicio programado observados, y escala con el kilometraje. Las llantas se amortizan sobre 40.000 km por juego, con precio según el diámetro de rin: un 13 o 14 cuesta cerca de la mitad que un 17. En Bogotá duran menos de lo que dice el fabricante.</p>
+    <p><strong>Seguro todo riesgo.</strong> Se estima en 3,8 % del avalúo al año para combustión y 4,6 % para eléctricos, por el mayor costo de reparación. La prima real varía enormemente según edad del conductor, historial, zona de parqueo e índice de robo del modelo. Cotiza tus finalistas antes de decidir: en algunos casos la diferencia entre dos carros es de más de un millón al año.</p>
+    <p><strong>Depreciación.</strong> Se deriva de la retención de valor observada de cada modelo, con un castigo adicional para los cero kilómetros por el golpe del primer año. No es un desembolso, pero es plata que pierdes. Un carro que se deprecia cinco puntos porcentuales más al año sobre $60 millones te cuesta $250.000 mensuales adicionales que nunca vas a ver en un recibo.</p>
+    <p><strong>La revisión técnico-mecánica</strong> se cobra a los usados y no a los nuevos, porque los particulares nuevos quedan exentos durante sus primeros años. Es una ventaja real del 0 km que rara vez se menciona.</p>
+    <p><strong>La corrección de altura.</strong> −26 % a los atmosféricos, −22 % a los híbridos ligeros, −6 % a los turbo y 0 % a los eléctricos. Es una regla de ingeniería, no una curva medida motor por motor.</p>
+    <p><strong>Lo que este estudio no mide.</strong> Que te guste manejarlo. Que quepan las sillas de los niños que tienes. Que el asiento te sirva a ti. Ninguna matriz reemplaza manejar tres finalistas el mismo sábado.</p>
+  </div>
+</section>
+
+<footer>
+  Matriz de carros para Bogotá · 34 modelos × 3 niveles de equipamiento · 15 criterios ponderables · motor de costos con tarifas 2026<br>
+  Cifras de referencia para comparar entre opciones, no cotizaciones. Verifica versión exacta, avalúo en SIBGA, prima real de seguro, historial RUNT y peritaje antes de comprar.
+</footer>
+</div>
+
+<script>
+const MONEY=['consumo','mantenimiento','costofijo','reventa'];
+const CATS=[
+ {k:'fiabilidad',n:'Fiabilidad',w:14,long:'Fiabilidad y fallas conocidas',hint:'Gravedad y costo de las fallas documentadas',why:'El criterio más caro de ignorar. No mide si el carro se vara, mide cuánto duele cuando lo hace. Una banda húmeda de distribución, una caja de doble embrague seca o una CVT castigada cuestan entre $6 y $12 millones — y esas son cifras que el motor de costos no incluye, porque no son mantenimiento programado sino falla catastrófica. Este criterio es la probabilidad de que te toque pagarla.'},
+ {k:'mantenimiento',n:'Taller y llantas',w:9,long:'Mantenimiento y llantas, en pesos',hint:'Servicio programado más llantas amortizadas',why:'Ya no es una estimación cualitativa: es el costo mensual de taller más llantas, calculado sobre tu kilometraje. Entre el más barato y el más caro de la lista hay una diferencia de más de tres veces al mes. Y el detalle que casi nadie mira al comprar: el diámetro del rin. Un juego de 17 cuesta cerca del doble que uno de 14 y en Bogotá se acaba antes.'},
+ {k:'valor',n:'Valor por peso',w:10,long:'Precio y carro por millón',hint:'Cuánto entrega por cada millón que pagas',why:'No es "el más barato". Es cuánto carro recibes por lo que pagas: equipamiento, motor, tamaño y año. Aquí se ve la brecha entre nuevo y usado, y por qué las versiones intermedias suelen ser el punto dulce de casi toda gama.'},
+ {k:'altura',n:'Altura 2.600 m',w:8,long:'Desempeño a 2.600 metros',hint:'Potencia efectiva sobre peso, ya descontada la altura',why:'Un motor atmosférico pierde cerca de 26 % de potencia en Bogotá; un turbo apenas un 6 %; un eléctrico, nada. Un 1.0 turbo de 116 hp se come vivo a un 1.6 atmosférico de 115 hp en la subida a La Calera. Y explica por qué los city cars nuevos de 65 hp quedan al fondo: en esta ciudad son 48 hp reales.'},
+ {k:'consumo',n:'Combustible',w:9,long:'Combustible o energía, en pesos',hint:'Costo mensual de tanquear o cargar',why:'Calculado con el precio de gasolina que pongas arriba y el rendimiento real estimado en ciclo bogotano. Dos cosas que aparecen apenas se traduce a pesos: la gasolina extra que piden los turbo y los motores de alta compresión se come buena parte de su ventaja en rendimiento, y un eléctrico cargado en casa opera por una fracción de lo que cuesta cualquier motor de combustión. La diferencia entre el primero y el último de esta lista supera el medio millón mensual.'},
+ {k:'seguridad',n:'Seguridad',w:10,long:'Seguridad activa y pasiva',hint:'Airbags, control de estabilidad y resultados de choque',why:'La variable donde más se separan estas opciones y donde más pesa el nivel de equipamiento: en varios modelos, la versión de entrada trae dos airbags y ningún control de estabilidad mientras el tope trae seis y sí lo trae. Mueve el eje de equipamiento y mira cómo se desploma media tabla.'},
+ {k:'garantia',n:'Garantía',w:7,long:'Garantía y procedencia',hint:'Respaldo de fábrica y certeza sobre la historia del carro',why:'El criterio que separa de raíz lo nuevo de lo usado. Un 0 km trae garantía completa, kilometraje real, cero choques ocultos y una factura que dice exactamente qué versión es. Un usado de 2019 sin historial trae lo contrario en los cuatro frentes.'},
+ {k:'respaldo',n:'Respaldo de red',w:7,long:'Respaldo de marca y red',hint:'Cobertura de talleres, permanencia y consecución de partes',why:'Lo que el costo de mantenimiento no captura: cuántos talleres independientes conocen ese motor, cuántos almacenes tienen la pieza hoy y cuánto se demora la que hay que importar. Un repuesto barato que llega en tres semanas es más caro que uno costoso que está en la estantería. Las marcas chinas recién llegadas y las europeas de nicho quedan muy expuestas, sobre todo en electrónica y alta tensión.'},
+ {k:'reventa',n:'Depreciación',w:6,long:'Depreciación, en pesos',hint:'Plata que pierdes cada mes sin verla salir',why:'El rubro más grande del estudio y el único que no aparece en ningún recibo. En este segmento supera con frecuencia a la gasolina y al taller sumados. Un 0 km carga el golpe completo del primer año; un usado de tres años ya lo tiene absorbido, que es exactamente lo que lo hace buen negocio. Y los eléctricos de marcas nuevas cargan además la incertidumbre sobre la batería, que el comprador siguiente descuenta sin piedad.'},
+ {k:'picoplaca',n:'Pico y placa',w:5,long:'Restricción de circulación',hint:'Exención de pico y placa en Bogotá',why:'Dos días de circulación por semana no aparecen en ninguna ficha técnica y valen más que casi cualquier otra ventaja para quien usa el carro a diario. Híbridos y eléctricos están exentos, con inscripción ante la Secretaría de Movilidad. La exención está amparada en el Plan de Desarrollo 2024–2027, pero el Distrito ya expresó reparos sobre los híbridos ligeros, así que a un mild hybrid se le descuenta ese riesgo regulatorio.'},
+ {k:'espacio',n:'Espacio',w:5,long:'Espacio y baúl',hint:'Litros de baúl y habitabilidad real',why:'Los sedanes de este segmento cargan casi el doble que sus hermanos hatchback con la misma mecánica y por prácticamente la misma plata. En el extremo opuesto hay eléctricos urbanos nuevos con 45 litros de baúl, que es menos que una maleta de cabina.'},
+ {k:'costofijo',n:'Costos fijos',w:4,long:'SOAT, impuesto, revisión y seguro, en pesos',hint:'Lo que pagas aunque el carro no se mueva',why:'SOAT según cilindraje y clase de vehículo, impuesto sobre avalúo, revisión técnico-mecánica y seguro todo riesgo. Dos hallazgos que solo aparecen al ponerlo en pesos: los SUV compactos registrados como camioneta pagan casi el doble de SOAT que un sedán con el mismo motor, y cruzar el umbral de avalúo de los $57,3 millones te sube el impuesto de 1,5 a 2,5 % para siempre. Los eléctricos matriculados en Bogotá juegan otro partido: tope de 1,2 % con 60 % de descuento por cinco años.'},
+ {k:'versiones',n:'Consistencia',w:3,long:'Consistencia entre versiones',hint:'Qué tanto cambia el carro según la versión que compres',why:'Mide qué tan lejos están la versión de entrada y el tope de gama del mismo modelo. Puntaje alto significa que el nombre dice lo que trae. Puntaje bajo significa que el modelo, por sí solo, no es información suficiente: tienes que verificar por VIN, y es donde más se vende un carro básico con nombre de full equipo. No mide calidad, mide cuánta tarea adicional te toca hacer.'},
+ {k:'confort',n:'Confort',w:2,long:'Confort y equipamiento',hint:'Suspensión, insonorización y tecnología a bordo',why:'Suspensión sobre adoquín y hueco, ruido a 100 km/h, calidad de asientos, pantalla e integración con el celular. Es el criterio que más se mueve con el nivel de equipamiento y el que menos pesa por defecto — súbelo si pasas dos horas diarias en el carro.'},
+ {k:'urbano',n:'Aptitud urbana',w:1,long:'Aptitud urbana',hint:'Tamaño, maniobrabilidad y despeje para huecos y resaltos',why:'Largo total, radio de giro y despeje al piso. Detalle contraintuitivo: las versiones de entrada suelen andar mejor por Bogotá que las tope de gama, porque montan rines más pequeños con llanta de perfil más alto, que absorbe los huecos en vez de transmitirlos al aro — y además cuestan la mitad de reemplazar.'}
+];
+
+const U='usado',N='nuevo';
+const CARS=[
+{id:'kwid',c:U,n:'Renault Kwid 1.0',body:'Hatchback',yr:'2020–2024',p:[35,45],eng:'1.0 3 cil. atmosférico',hp:66,tq:'93 Nm',asp:'NA',kg:800,tr:290,gb:'MT 5',ft:'corriente',kpg:62,cc:999,sc:'auto',rin:14,mant:900000,ab:'2–4 airbags según versión',esc:false,cl:184,disp:82,ret:78,
+ tinfo:'Life · Zen · Intens · Outsider. De Life a Intens se pasa de dos a cuatro airbags y aparece el control de estabilidad. Es el salto de seguridad más grande de toda la lista por el menor dinero.',
+ s:{fiabilidad:58,valor:90,altura:22,seguridad:30,garantia:42,respaldo:95,picoplaca:15,espacio:45,confort:35,urbano:92},
+ bad:['Potenciómetro y pedal electrónico del acelerador: la falla emblemática del modelo.','Recalentamiento por termostato, purga deficiente o junta de culata.','Aire acondicionado, relé de ventilador y entrada de reversa dura.'],
+ good:['El costo por kilómetro más bajo de toda la lista entre los de combustión.','Red Renault enorme y repuesto genérico en cualquier taller.','Rines de 14: las llantas más baratas del grupo y las que mejor aguantan los huecos.'],
+ v:'Queda muy por debajo del presupuesto, lo cual es su mejor argumento. A cambio entrega 49 hp efectivos en Bogotá. Si vas por uno usado, la versión importa más que el año.'},
+
+{id:'march',c:U,n:'Nissan March 1.6 Active',body:'Hatchback',yr:'2019–2023',p:[42,52],eng:'1.6 HR16DE atmosférico',hp:107,tq:'142 Nm',asp:'NA',kg:1040,tr:265,gb:'MT 5 / CVT',ft:'corriente',kpg:52,cc:1598,sc:'auto',rin:15,mant:1250000,ab:'2 airbags',esc:false,cl:165,disp:60,ret:58,
+ tinfo:'Sense · Active · Advance. Cambia equipamiento y la disponibilidad de caja CVT, que es lo que de verdad hay que verificar.',
+ s:{fiabilidad:78,valor:78,altura:52,seguridad:40,garantia:35,respaldo:80,picoplaca:15,espacio:48,confort:50,urbano:82},
+ bad:['La versión CVT es el punto débil; en manual el riesgo desaparece.','Al pasar de 1.500 cc, el SOAT le cuesta casi cien mil pesos más al año que a un 1.4.','Reventa floja: es de los que más se deprecia del grupo japonés.'],
+ good:['El HR16DE es uno de los motores más resistentes del segmento.','Repuesto abundante y barato, red Nissan amplia.','Buen equilibrio potencia/peso para su precio.'],
+ v:'Motor excelente en una carrocería que envejeció mal. En manual es una compra sensata; en CVT hay que revisar historial de cambios de fluido sin excepción.'},
+
+{id:'gol',c:U,n:'Volkswagen Gol Trendline',body:'Hatchback',yr:'2019–2023',p:[38,48],eng:'1.6 MSI atmosférico',hp:101,tq:'155 Nm',asp:'NA',kg:1050,tr:285,gb:'MT 5',ft:'corriente',kpg:52,cc:1598,sc:'auto',rin:14,mant:1050000,ab:'2 airbags',esc:false,cl:160,disp:52,ret:80,
+ tinfo:'Gama corta, con diferencias sobre todo en confort y multimedia. El paquete de seguridad se mantiene corto en toda la gama.',
+ s:{fiabilidad:80,valor:84,altura:48,seguridad:32,garantia:33,respaldo:88,picoplaca:15,espacio:50,confort:42,urbano:80},
+ bad:['Nivel de seguridad de otra época: dos airbags, sin control de estabilidad, en cualquier versión.','Calidad percibida del interior por debajo de casi todos sus rivales.','Modelo descontinuado; el respaldo se irá enfriando con el tiempo.'],
+ good:['Mecánica probada hasta el cansancio y taller en cualquier pueblo.','Mercado secundario muy líquido: se vende rápido y a buen precio, lo que baja su depreciación.','Rines de 14 con llanta de perfil alto: barata y resistente al mal piso.'],
+ v:'La definición de carro sin sorpresas. Lo compras por lo que cuesta mantenerlo y por lo fácil que es venderlo, no por lo que ofrece adentro.'},
+
+{id:'logan',c:U,n:'Renault Logan 1.6',body:'Sedán',yr:'2020–2024',p:[42,52],eng:'1.6 16v atmosférico',hp:115,tq:'156 Nm',asp:'NA',kg:1100,tr:510,gb:'MT 5',ft:'corriente',kpg:50,cc:1598,sc:'auto',rin:15,mant:1000000,ab:'2–4 airbags según versión',esc:false,cl:172,disp:70,ret:76,
+ tinfo:'Life · Zen · Intens. Airbags, aire acondicionado y multimedia cambian sustancialmente. Las versiones de acceso son notoriamente austeras.',
+ s:{fiabilidad:80,valor:86,altura:52,seguridad:42,garantia:42,respaldo:95,picoplaca:15,espacio:88,confort:52,urbano:66},
+ bad:['Bujes de suspensión y amortiguadores se desgastan rápido en piso malo.','En versiones bajas el equipamiento es mínimo y la seguridad, escasa.','El 1.6 lo pone en la franja alta de SOAT sin darle prestaciones de 1.6.'],
+ good:['510 litros de baúl: capacidad de carro de segmento superior.','La red más densa del país junto con Chevrolet; el taller más barato de la lista.','Mecánica simple, sin electrónica que se pueda dañar caro.'],
+ v:'Si el uso incluye carga o viajes con equipaje, es de los pocos que resuelve el problema sin subir de presupuesto. Aburrido de manejar, imbatible de mantener.'},
+
+{id:'stepway',c:U,n:'Renault Stepway 1.6',body:'Hatchback alto',yr:'2020–2024',p:[45,58],eng:'1.6 16v atmosférico',hp:115,tq:'156 Nm',asp:'NA',kg:1150,tr:320,gb:'MT 5 / CVT',ft:'corriente',kpg:48,cc:1598,sc:'auto',rin:15,mant:1080000,ab:'2–4 airbags según versión',esc:false,cl:195,disp:72,ret:80,
+ tinfo:'Life · Zen · Intens. Además del equipamiento, la disponibilidad de caja CVT depende de la versión.',
+ s:{fiabilidad:80,valor:78,altura:50,seguridad:44,garantia:42,respaldo:95,picoplaca:15,espacio:58,confort:58,urbano:78},
+ bad:['Carrocería alta y suspensión blanda: se balancea notoriamente en curva.','Consumo más alto que el Logan por peso y aerodinámica.','En versión CVT hereda las dudas de esa caja.'],
+ good:['195 mm de despeje: el mejor blindaje contra el piso bogotano después del Renegade.','Reventa sólida: se vende solo en el usado, y eso le baja la depreciación.','Costo de taller de los más bajos del grupo.'],
+ v:'La respuesta racional a las vías de Bogotá sin pagar precio de SUV. Se mueve mucho en curva, pero pasa por encima de todo sin quejarse.'},
+
+{id:'joy',c:U,n:'Chevrolet Joy Sedán 1.4',body:'Sedán',yr:'2020–2024',p:[40,50],eng:'1.4 atmosférico',hp:98,tq:'128 Nm',asp:'NA',kg:1050,tr:500,gb:'MT 5',ft:'corriente',kpg:50,cc:1398,sc:'auto',rin:14,mant:980000,ab:'2 airbags',esc:false,cl:165,disp:38,ret:74,
+ tinfo:'Gama muy corta con pocas variantes. Es de los pocos modelos donde el nombre sí dice lo que trae — aunque lo que trae sea poco.',
+ s:{fiabilidad:78,valor:84,altura:46,seguridad:26,garantia:40,respaldo:92,picoplaca:15,espacio:86,confort:40,urbano:70},
+ bad:['El puntaje de seguridad más bajo de la lista: plataforma vieja, dos airbags, sin ESC.','Diseño y equipamiento de hace una década.','Insonorización pobre; se oye todo a 100 km/h.'],
+ good:['500 litros de baúl por menos de cincuenta millones.','Bajo 1.500 cc: paga la tarifa de SOAT más barata pese a ser sedán grande.','Red Chevrolet gigantesca y repuestos muy económicos.'],
+ v:'Mucho espacio y muy poco carro alrededor. Funciona si el presupuesto manda y el uso es urbano, pero es difícil recomendarlo para carretera con familia.'},
+
+{id:'picantoU',c:U,n:'Kia Picanto 1.2',body:'Hatchback',yr:'2020–2024',p:[45,56],eng:'1.2 Kappa atmosférico',hp:84,tq:'122 Nm',asp:'NA',kg:950,tr:255,gb:'MT 5 / AT 4',ft:'corriente',kpg:58,cc:1197,sc:'auto',rin:14,mant:1250000,ab:'2–6 airbags según versión',esc:false,cl:152,disp:70,ret:92,
+ tinfo:'EX · Vibrant · X-Line. El número de airbags y la presencia de control de estabilidad cambian entre versiones. Es de los casos donde más vale pagar por subir de escalón.',
+ s:{fiabilidad:90,valor:74,altura:38,seguridad:48,garantia:45,respaldo:84,picoplaca:15,espacio:42,confort:55,urbano:94},
+ bad:['84 hp que en Bogotá son 62: sufre en subida y con el carro lleno.','Baúl de 255 litros, de los más pequeños de la lista.','En versiones de acceso, el paquete de seguridad se queda muy corto.'],
+ good:['La depreciación más baja del grupo: el Picanto casi no pierde valor en Colombia.','El motor Kappa 1.2 es de los más confiables del segmento.','Rines de 14 y bajo cilindraje: SOAT y llantas en el piso de la tabla.'],
+ v:'El usado de bajo riesgo por excelencia. Dato importante: este 1.2 usado tiene más potencia que el Picanto 1.0 que se vende nuevo hoy, y cuesta bastante menos.'},
+
+{id:'rio',c:U,n:'Kia Rio 1.4 Vibrant HB',body:'Hatchback',yr:'2019–2023',p:[45,56],eng:'1.4 atmosférico',hp:100,tq:'132 Nm',asp:'NA',kg:1050,tr:325,gb:'MT 6 / AT 6',ft:'corriente',kpg:54,cc:1368,sc:'auto',rin:15,mant:1380000,ab:'2–6 airbags según versión',esc:false,cl:140,disp:70,ret:88,
+ tinfo:'LX · EX · Vibrant. Salto grande de airbags y equipamiento entre el acceso y el tope. Un Rio LX y un Rio Vibrant comparten poco más que la carrocería.',
+ s:{fiabilidad:88,valor:76,altura:46,seguridad:52,garantia:40,respaldo:84,picoplaca:15,espacio:58,confort:62,urbano:84},
+ bad:['Despeje de apenas 140 mm: es el que más raspa de toda la lista.','El 1.4 se queda corto a 2.600 m con cuatro pasajeros.','Versiones base sin control de estabilidad.'],
+ good:['Bajo 1.500 cc: SOAT en la tarifa más barata.','Retención de valor muy fuerte, de las mejores de la lista.','Fiabilidad mecánica alta y servicio predecible.'],
+ v:'Un escalón por encima del Picanto en refinamiento y espacio, con la misma tranquilidad mecánica. El despeje bajo es su único defecto serio para esta ciudad.'},
+
+{id:'swiftU',c:U,n:'Suzuki Swift 1.2',body:'Hatchback',yr:'2020–2024',p:[45,55],eng:'1.2 Dualjet atmosférico',hp:83,tq:'108 Nm',asp:'NA',kg:900,tr:265,gb:'MT 5 / AT',ft:'corriente',kpg:68,cc:1197,sc:'auto',rin:15,mant:1220000,ab:'2–6 airbags según versión',esc:true,cl:120,disp:48,ret:82,
+ tinfo:'GL · GLX. Gama corta: el GLX suma airbags laterales y equipamiento, pero la versión de acceso ya trae control de estabilidad.',
+ s:{fiabilidad:90,valor:78,altura:40,seguridad:62,garantia:42,respaldo:78,picoplaca:15,espacio:44,confort:52,urbano:90},
+ bad:['El despeje más bajo del grupo: 120 mm. Los resaltos hay que cruzarlos en diagonal.','83 hp atmosféricos en altura son 61 reales: adelantar exige planeación.','Insonorización básica; el motor se oye siempre.'],
+ good:['El menor gasto de gasolina de toda la lista entre los de combustión, con margen.','Fiabilidad mecánica de referencia y ESC de serie en toda la gama.','Peso bajo: frena, gira y se estaciona mejor que casi todos.'],
+ v:'El ahorrador inteligente de la lista. Si el uso es ciudad y no cargas peso, cuesta encontrarle un pero — salvo cada resalto de Bogotá.'},
+
+{id:'baleno',c:U,n:'Suzuki Baleno Cross 1.5 GL',body:'Hatchback alto',yr:'2022–2025',p:[50,60],eng:'1.5 atmosférico',hp:104,tq:'138 Nm',asp:'NA',kg:985,tr:339,gb:'MT 5 / AT',ft:'corriente',kpg:58,cc:1462,sc:'auto',rin:16,mant:1230000,ab:'2–6 airbags según versión',esc:true,cl:170,disp:46,ret:72,
+ tinfo:'Gama corta con diferencias moderadas, concentradas en multimedia y airbags. Verifica si la unidad trae sistema híbrido ligero: cambiaría por completo su puntaje de pico y placa.',
+ s:{fiabilidad:88,valor:74,altura:50,seguridad:50,garantia:55,respaldo:78,picoplaca:15,espacio:62,confort:55,urbano:82},
+ bad:['Modelo reciente y de bajo volumen: mercado secundario todavía delgado y depreciación alta.','Acabados interiores por debajo de coreanos y japoneses del mismo precio.','Rines de 16: las llantas cuestan bastante más que las de sus rivales directos.'],
+ good:['1.462 cc: se cuela por debajo del umbral de SOAT de los 1.500 por 38 centímetros cúbicos.','Muy buena relación peso/potencia con consumo bajo.','Al ser de 2022 en adelante, suele quedar garantía de fábrica vigente.'],
+ v:'Propuesta muy racional que casi nadie considera. Aquí está calculado como gasolina pura; si la unidad es híbrida ligera, sube varios puestos.'},
+
+{id:'hb20s',c:U,n:'Hyundai HB20S / Accent 1.6',body:'Sedán',yr:'2019–2023',p:[45,58],eng:'1.6 Gamma atmosférico',hp:122,tq:'161 Nm',asp:'NA',kg:1100,tr:470,gb:'MT 6 / AT 6',ft:'corriente',kpg:50,cc:1591,sc:'auto',rin:15,mant:1300000,ab:'2–6 airbags según versión',esc:false,cl:160,disp:68,ret:82,
+ tinfo:'Gama con varios escalones de equipamiento. La ausencia o presencia de control de estabilidad depende de la versión y del año.',
+ s:{fiabilidad:84,valor:80,altura:55,seguridad:52,garantia:38,respaldo:86,picoplaca:15,espacio:84,confort:62,urbano:70},
+ bad:['Consumo mediocre para un 1.6 atmosférico moderno.','Control de estabilidad ausente en varias versiones vendidas acá.','Pasa de 1.500 cc: cae en la franja alta de SOAT.'],
+ good:['122 hp es de lo más alto entre los atmosféricos de la lista.','470 litros de baúl y buen espacio de piernas atrás.','Hyundai defiende bien el precio de reventa y tiene red amplia.'],
+ v:'El sedán equilibrado del grupo: potencia decente, espacio de sobra, mecánica confiable y precio contenido. No sobresale en nada, no falla en casi nada.'},
+
+{id:'versa',c:U,n:'Nissan Versa 1.6',body:'Sedán',yr:'2020–2024',p:[52,65],eng:'1.6 HR16DE atmosférico',hp:118,tq:'149 Nm',asp:'NA',kg:1100,tr:482,gb:'MT 5 / CVT',ft:'corriente',kpg:52,cc:1598,sc:'auto',rin:15,mant:1380000,ab:'6 airbags',esc:true,cl:145,disp:74,ret:74,
+ tinfo:'Sense · Advance · Exclusive. Cambia la caja (manual o CVT), las asistencias y el equipamiento. Dos Versa del mismo año pueden tener perfiles de riesgo distintos.',
+ s:{fiabilidad:74,valor:74,altura:54,seguridad:72,garantia:42,respaldo:82,picoplaca:15,espacio:90,confort:70,urbano:66},
+ bad:['La CVT Xtronic sigue siendo el riesgo del modelo, aunque mejoró desde 2018.','El fluido de caja pide cambio cada 40–50.000 km en topografía colombiana.','Largo, con despeje corto y radio de giro amplio.'],
+ good:['482 litros de baúl y de las mejores habitabilidades traseras del grupo.','Seis airbags y control de estabilidad de serie desde la generación 2020.','El motor HR16DE es prácticamente indestructible.'],
+ v:'Mucho carro por el dinero, con un asterisco que se llama caja continuamente variable. La versión define si compras ese riesgo o no: en manual desaparece.'},
+
+{id:'virtus',c:U,n:'Volkswagen Virtus 1.6 Highline',body:'Sedán',yr:'2020–2024',p:[55,68],eng:'1.6 MSI atmosférico',hp:110,tq:'155 Nm',asp:'NA',kg:1150,tr:521,gb:'MT 5 / AT 6 Aisin',ft:'corriente',kpg:50,cc:1598,sc:'auto',rin:16,mant:1750000,ab:'6 airbags',esc:true,cl:155,disp:58,ret:80,
+ tinfo:'Trendline · Comfortline · Highline. La seguridad base ya es buena en toda la gama; lo que cambia es confort, multimedia y rines.',
+ s:{fiabilidad:86,valor:76,altura:50,seguridad:88,garantia:42,respaldo:82,picoplaca:15,espacio:94,confort:78,urbano:62},
+ bad:['Servicio de concesionario VW más caro que el de las marcas de volumen.','El 1.6 MSI mueve 1.150 kg con justicia en altura: no es rápido.','Precio y cilindraje lo ponen en la franja alta de SOAT y cerca del umbral tributario.'],
+ good:['521 litros: el baúl más grande de las 34 opciones.','Seis airbags y ESC de serie, con estructura bien calificada en pruebas de choque.','La caja automática es una Aisin de convertidor de par, no una DSG: mucho menos riesgo.'],
+ v:'El mejor sedán familiar del presupuesto y el que mejor combina seguridad, espacio y fiabilidad. Que el automático sea Aisin y no DSG es la razón técnica más importante para preferirlo sobre otros VW.'},
+
+{id:'polotrackU',c:U,n:'VW Polo Track 1.6 usado',body:'Hatchback',yr:'2023–2025',p:[55,63],eng:'1.6 MSI atmosférico',hp:110,tq:'155 Nm',asp:'NA',kg:1080,tr:300,gb:'MT 5 / AT 6 Aisin',ft:'corriente',kpg:52,cc:1598,sc:'auto',rin:15,mant:1700000,ab:'4–6 airbags',esc:true,cl:165,disp:15,ret:78,
+ tinfo:'Versión prácticamente única. Es el modelo más consistente de toda la lista: lo que ves en el aviso es lo que hay.',
+ s:{fiabilidad:86,valor:74,altura:51,seguridad:70,garantia:58,respaldo:82,picoplaca:15,espacio:55,confort:66,urbano:80},
+ bad:['Es un Polo con recortes: menos equipamiento y materiales que el Polo completo.','Baúl de 300 litros, discreto para el precio.','La diferencia con el 0 km es estrecha: compara la cuenta mensual de ambos, no solo el precio.'],
+ good:['Misma mecánica MSI + Aisin del Virtus: combinación de bajo riesgo.','Al ser modelo 2023 en adelante, suele conservar garantía de fábrica.','Gama cerrada: cero riesgo de comprar una versión distinta a la que creías.'],
+ v:'El caso donde el cálculo nuevo contra usado se vuelve más interesante de todo el estudio. Míralo lado a lado con su versión 0 km en la tabla de costos.'},
+
+{id:'mazda2hb',c:U,n:'Mazda 2 Hatchback 1.5',body:'Hatchback',yr:'2019–2023',p:[55,68],eng:'1.5 Skyactiv-G atmosférico',hp:115,tq:'148 Nm',asp:'NA',kg:1050,tr:280,gb:'MT 6 / AT 6',ft:'extra',kpg:56,cc:1496,sc:'auto',rin:16,mant:1950000,ab:'6 airbags',esc:true,cl:145,disp:60,ret:94,
+ tinfo:'Prime · Touring · Grand Touring. Sube de rines, multimedia y asistencias, pero el paquete de airbags se mantiene alto en toda la gama.',
+ s:{fiabilidad:94,valor:70,altura:56,seguridad:78,garantia:38,respaldo:80,picoplaca:15,espacio:50,confort:76,urbano:84},
+ bad:['Alta compresión: pide gasolina extra, y ese sobreprecio por galón se come buena parte de su buen rendimiento.','Repuestos y servicio Mazda claramente más caros que los de marcas de volumen.','Espacio trasero justo y baúl de solo 280 litros.'],
+ good:['1.496 cc: por cuatro centímetros cúbicos se queda en la tarifa barata de SOAT.','La depreciación más baja de la lista después del Yaris.','El Skyactiv-G con cadena es de los motores más confiables que se venden en Colombia.'],
+ v:'El mejor carro de manejar de la lista y el segundo más confiable. Pagas más por servicio y combustible, pero lo recuperas casi todo en depreciación evitada.'},
+
+{id:'mazda2sd',c:U,n:'Mazda 2 Sedán 1.5 Touring',body:'Sedán',yr:'2019–2023',p:[55,68],eng:'1.5 Skyactiv-G atmosférico',hp:115,tq:'148 Nm',asp:'NA',kg:1080,tr:440,gb:'MT 6 / AT 6',ft:'extra',kpg:56,cc:1496,sc:'auto',rin:16,mant:1950000,ab:'6 airbags',esc:true,cl:145,disp:60,ret:92,
+ tinfo:'Prime · Touring · Grand Touring. El Touring es el punto dulce: trae lo importante sin pagar la prima del tope ni montar los rines más grandes.',
+ s:{fiabilidad:94,valor:72,altura:55,seguridad:78,garantia:38,respaldo:80,picoplaca:15,espacio:82,confort:78,urbano:74},
+ bad:['Mismo sobrecosto de servicio y de gasolina extra que el hatchback.','Despeje bajo para las condiciones de piso de la ciudad.','Precio de entrada alto dentro del rango.'],
+ good:['440 litros de baúl sin renunciar a la mecánica Skyactiv.','Depreciación muy baja: es de los que menos valor pierde al mes.','Acabado interior y puesto de manejo notoriamente superiores al promedio.'],
+ v:'Probablemente la compra más equilibrada del estudio si el presupuesto llega. Une confiabilidad alta, espacio de sedán y placer de manejo.'},
+
+{id:'yaris',c:U,n:'Toyota Yaris 1.5 Sport',body:'Hatchback',yr:'2019–2023',p:[58,72],eng:'1.5 Dual VVT-i atmosférico',hp:107,tq:'145 Nm',asp:'NA',kg:1100,tr:310,gb:'MT 5 / AT 6',ft:'corriente',kpg:56,cc:1496,sc:'auto',rin:15,mant:1680000,ab:'3–7 airbags según versión',esc:true,cl:145,disp:72,ret:96,
+ tinfo:'XLI · XS · Sport · SR. Aquí hay una trampa clásica: no todos los Yaris traen siete airbags. Las versiones de acceso traen bastantes menos.',
+ s:{fiabilidad:96,valor:66,altura:50,seguridad:92,garantia:40,respaldo:86,picoplaca:15,espacio:56,confort:72,urbano:82},
+ bad:['El más caro de comprar en su tamaño: pagas la prima Toyota completa a la entrada.','El paquete de siete airbags es de las versiones altas, no de toda la gama.','107 hp atmosféricos en altura no lo hacen rápido.'],
+ good:['La depreciación más baja de las 34 opciones, sin competencia cercana: buena parte de lo que pagas de más vuelve.','1.496 cc y gasolina corriente: SOAT barato y tanqueada normal.','Fiabilidad de referencia; es el estándar contra el que se miden los demás.'],
+ v:'Pagas caro a la entrada y recuperas casi todo a la salida. Apaga la depreciación en la tabla de costos y verás que sube; enciéndela y sube más. Ese es todo su argumento.'},
+
+{id:'onixrs',c:U,n:'Chevrolet Onix RS 1.0 Turbo',body:'Hatchback',yr:'2021–2025',p:[52,65],eng:'1.0 3 cil. turbo',hp:116,tq:'160 Nm',asp:'Turbo',kg:1080,tr:275,gb:'MT 6 / AT 6',ft:'extra',kpg:52,cc:999,sc:'auto',rin:16,mant:1480000,ab:'6 airbags',esc:true,cl:155,disp:88,ret:74,
+ tinfo:'LS · LT · RS · Premier. El caso extremo del estudio: las versiones bajas usan un 1.0 atmosférico y solo las altas montan el 1.0 turbo. Un "Onix" puede tener 116 hp turbo o unos 82 atmosféricos.',
+ s:{fiabilidad:60,valor:74,altura:84,seguridad:70,garantia:50,respaldo:90,picoplaca:15,espacio:50,confort:72,urbano:82},
+ bad:['Banda de distribución húmeda: si no se cambia en intervalo, se pierde el motor. Verificar antes que cualquier otra cosa.','Pide gasolina extra: un motor pequeño con tanqueada cara.','La versión define hasta el motor. Un aviso que dice solo "Onix" no dice nada.'],
+ good:['999 cc: paga la tarifa de SOAT más barata pese a rendir como un 1.6.','En versión turbo, casi no pierde potencia en altura: de los más rápidos de la lista en Bogotá.','Red Chevrolet gigantesca y repuesto abundante.'],
+ v:'Es el que mejor se siente manejando en esta ciudad y el que más obliga a hacer tarea antes de comprar: primero confirmar que sea turbo, después pedir la factura de la banda de distribución.'},
+
+{id:'onixplus',c:U,n:'Chevrolet Onix Plus 1.0 Turbo',body:'Sedán',yr:'2020–2025',p:[50,62],eng:'1.0 3 cil. turbo',hp:116,tq:'160 Nm',asp:'Turbo',kg:1100,tr:469,gb:'MT 6 / AT 6',ft:'extra',kpg:52,cc:999,sc:'auto',rin:15,mant:1450000,ab:'6 airbags',esc:true,cl:155,disp:86,ret:74,
+ tinfo:'LT · LTZ · Premier. Igual que el hatchback: la motorización cambia entre versiones. La gama más abierta del estudio junto con el Onix RS.',
+ s:{fiabilidad:60,valor:78,altura:82,seguridad:70,garantia:48,respaldo:90,picoplaca:15,espacio:86,confort:70,urbano:70},
+ bad:['Misma banda de distribución húmeda del RS: verificación obligatoria.','Gasolina extra recomendada, con el sobrecosto que eso implica cada tanqueada.','Confirmar motorización antes de negociar: no todos los Onix Plus son turbo.'],
+ good:['469 litros de baúl con motor turbo y SOAT de menos de 1.500 cc: combinación difícil de igualar.','Potencia efectiva en altura muy por encima de los sedanes atmosféricos rivales.','Costo de repuesto bajo gracias al volumen de Chevrolet.'],
+ v:'La versión sensata del Onix turbo: mismo empuje en altura, mucho más espacio, y suele costar menos que el RS. El asterisco de la banda húmeda sigue intacto.'},
+
+{id:'arona',c:U,n:'Seat Arona 1.6',body:'SUV-B',yr:'2019–2023',p:[55,68],eng:'1.6 MPI atmosférico',hp:110,tq:'155 Nm',asp:'NA',kg:1200,tr:400,gb:'AT 6 Aisin',ft:'corriente',kpg:46,cc:1598,sc:'camioneta',rin:17,mant:2250000,ab:'6 airbags',esc:true,cl:190,disp:62,ret:58,
+ tinfo:'Style · Xcellence · FR. Diferencias sobre todo de acabado, rines y multimedia; el paquete de seguridad se mantiene completo en toda la gama.',
+ s:{fiabilidad:82,valor:68,altura:46,seguridad:86,garantia:32,respaldo:58,picoplaca:15,espacio:74,confort:78,urbano:74},
+ bad:['Triple castigo en costos fijos: registrado como camioneta y con más de 1.500 cc, su SOAT casi duplica el de un sedán equivalente; encima monta rines de 17.','110 hp atmosféricos moviendo 1.200 kg a 2.600 m: de los más lentos del grupo en altura.','Depreciación fuerte: la marca tiene poca demanda en el usado colombiano.'],
+ good:['Seis airbags, ESC y una de las mejores estructuras de la lista, en cualquier versión.','190 mm de despeje con carrocería de SUV compacta.','La caja Aisin de convertidor de par es de bajo riesgo, a diferencia de las DSG del grupo.'],
+ v:'Buen carro atrapado en un mal argumento económico. Se compra barato porque se deprecia mucho, y luego se sostiene caro. Mira su fila en la cuenta mensual antes de enamorarte.'},
+
+{id:'cactus',c:U,n:'Citroën C4 Cactus',body:'SUV-B',yr:'2019–2023',p:[50,65],eng:'1.6 16v atmosférico / 1.6 THP turbo',hp:118,tq:'160 Nm',asp:'NA',kg:1200,tr:358,gb:'AT 6 Aisin',ft:'corriente',kpg:44,cc:1598,sc:'camioneta',rin:16,mant:2400000,ab:'6 airbags',esc:true,cl:170,disp:68,ret:34,
+ tinfo:'Feel · Shine. Además del equipamiento, cambia la motorización entre atmosférico y turbo según versión y año. Y el turbo THP es el que arrastra fama de problemas.',
+ s:{fiabilidad:58,valor:82,altura:44,seguridad:82,garantia:28,respaldo:50,picoplaca:15,espacio:70,confort:92,urbano:70},
+ bad:['La depreciación más severa del grupo junto con el C-Elysée: es su rubro mensual más grande con diferencia.','En versión 1.6 THP, el motor EP6 arrastra fama de cadena, bomba de alta y carbonización.','Clasificado como camioneta y con 1.598 cc: paga la tarifa de SOAT más alta del estudio junto con el Arona.'],
+ good:['La mejor suspensión y los mejores asientos de las 34 opciones, sin discusión.','Seis airbags y ESC de serie con buena calificación de choque.','Precio de entrada bajo para lo que ofrece — que es exactamente el reflejo de su depreciación.'],
+ v:'Se compra por lo que ya perdió. Es una ganga real si el uso es largo y la reventa no te importa. Enciende la depreciación en la cuenta mensual y entiendes por qué está tan barato.'},
+
+{id:'c3feel',c:U,n:'Citroën C3 Feel',body:'Hatchback alto',yr:'2023–2025',p:[52,62],eng:'1.6 16v atmosférico',hp:115,tq:'155 Nm',asp:'NA',kg:1050,tr:315,gb:'MT 5 / AT 6',ft:'corriente',kpg:52,cc:1598,sc:'auto',rin:15,mant:2050000,ab:'4 airbags',esc:true,cl:180,disp:55,ret:46,
+ tinfo:'Live · Feel · Shine. El equipamiento sube bastante entre escalones, y en algunas configuraciones cambia la motorización.',
+ s:{fiabilidad:70,valor:76,altura:52,seguridad:62,garantia:52,respaldo:50,picoplaca:15,espacio:58,confort:74,urbano:80},
+ bad:['Depreciación fuerte, típica de Citroën en el mercado colombiano.','Red de talleres estrecha; el diagnóstico electrónico solo lo hace bien el concesionario.','Cuatro airbags cuando varios rivales del mismo precio ofrecen seis.'],
+ good:['180 mm de despeje y suspensión blanda: pensado literalmente para vías malas.','Usa el 1.6 atmosférico, no el PureTech turbo: se salva del problema de la banda húmeda.','Registrado como automóvil, no como camioneta: se ahorra la tarifa alta de SOAT que pagan Arona y Cactus.'],
+ v:'Un carro bien pensado para esta ciudad al que le pesa el apellido en la reventa. Verifica la motorización exacta antes de nada.'},
+
+{id:'celysee',c:U,n:'Citroën C-Elysée 1.6 Shine',body:'Sedán',yr:'2017–2020',p:[38,50],eng:'1.6 VTi atmosférico',hp:115,tq:'150 Nm',asp:'NA',kg:1100,tr:506,gb:'MT 5 / AT 6',ft:'corriente',kpg:48,cc:1598,sc:'auto',rin:15,mant:2350000,ab:'2–4 airbags',esc:false,cl:155,disp:48,ret:28,
+ tinfo:'Feel · Shine. Gama corta con diferencias sobre todo en confort y multimedia. La seguridad se queda corta en cualquier versión.',
+ s:{fiabilidad:62,valor:84,altura:50,seguridad:44,garantia:18,respaldo:42,picoplaca:15,espacio:86,confort:82,urbano:66},
+ bad:['La peor retención de valor de todo el estudio: casi no tiene mercado secundario.','Modelo descontinuado: consecución de repuestos cada vez más lenta y cara.','Cuidado con la antigüedad: al cruzar los diez años el SOAT sube más de $145.000 de golpe.'],
+ good:['506 litros de baúl y confort de marcha muy superior a su precio.','Precio de entrada bajísimo: es el que menos capital inmoviliza de la lista.','Motor atmosférico simple, sin turbo ni banda húmeda que vigilar.'],
+ v:'Mucho carro por muy poca plata, y esa es la advertencia. Solo tiene sentido si lo vas a manejar hasta el final: apaga la depreciación en la cuenta mensual y de repente se ve razonable; enciéndela y entiendes el problema.'},
+
+{id:'crossland',c:U,n:'Opel Crossland 1.2 Elegance',body:'SUV-B',yr:'2021–2023',p:[55,70],eng:'1.2 PureTech turbo',hp:130,tq:'230 Nm',asp:'Turbo',kg:1250,tr:410,gb:'AT 6',ft:'extra',kpg:48,cc:1199,sc:'camioneta',rin:16,mant:2500000,ab:'6 airbags',esc:true,cl:165,disp:42,ret:38,
+ tinfo:'Edition · Elegance. Gama corta; ambas comparten el mismo motor 1.2 turbo, que es justamente el problema.',
+ s:{fiabilidad:42,valor:74,altura:82,seguridad:84,garantia:30,respaldo:48,picoplaca:15,espacio:76,confort:80,urbano:72},
+ bad:['El motor 1.2 PureTech anterior a mediados de 2022 usa banda de distribución bañada en aceite que se degrada, tapa el circuito de lubricación y puede destruir el motor. Stellantis reconoció el defecto y montó programas de reparación en Europa.','Registrado como camioneta: SOAT alto pese a tener apenas 1.199 cc.','Depreciación alta por baja demanda de la marca en el usado.'],
+ good:['130 hp turbo con 230 Nm: de los más empujadores del grupo en altura.','Seis airbags, control de estabilidad y buen paquete de asistencias en toda la gama.','410 litros de baúl y buen espacio interior para su tamaño.'],
+ v:'Sobre el papel es de los mejores del estudio; el motor lo hunde. Si consideras uno, tiene que ser posterior a julio de 2022 y con historial documentado. La versión es irrelevante frente a la fecha de fabricación.'},
+
+{id:'renegade',c:U,n:'Jeep Renegade 1.8 Sport',body:'SUV-B',yr:'2019–2022',p:[58,72],eng:'1.8 E.torQ atmosférico',hp:139,tq:'186 Nm',asp:'NA',kg:1400,tr:320,gb:'AT 6',ft:'corriente',kpg:34,cc:1800,sc:'camioneta',rin:17,mant:2900000,ab:'4–6 airbags',esc:true,cl:210,disp:80,ret:62,
+ tinfo:'Sport · Longitude · Trailhawk. Cambia motorización y hasta tracción entre versiones. Comparar "un Renegade" sin decir versión no significa nada.',
+ s:{fiabilidad:62,valor:62,altura:44,seguridad:90,garantia:30,respaldo:58,picoplaca:15,espacio:62,confort:78,urbano:58},
+ bad:['El peor gasto de combustible del estudio con distancia: 1.400 kg movidos por un atmosférico que en altura da 103 hp.','SOAT de camioneta entre 1.500 y 2.500 cc: la tarifa más alta de toda la lista, más de $946.000 al año.','Rines de 17 y taller Jeep: el costo de taller y llantas más alto del grupo.'],
+ good:['La estructura mejor calificada en pruebas de choque de las 34 opciones.','210 mm de despeje: pasa por donde ninguno de los demás se atreve.','Retención de valor decente para una marca premium de nicho.'],
+ v:'Compras seguridad, despeje y presencia, y pagas la cuenta cada mes en tres rubros distintos a la vez. Baja el kilometraje mensual a 500 km y mira cómo mejora; súbelo a 2.000 y entiende por qué no es un carro de trancón diario.'},
+
+{id:'jetta',c:U,n:'VW Jetta 1.4 TSI Comfortline',body:'Sedán',yr:'2018–2021',p:[55,72],eng:'1.4 TSI turbo',hp:150,tq:'250 Nm',asp:'Turbo',kg:1320,tr:510,gb:'AT 6/8 o DSG 7',ft:'extra',kpg:46,cc:1395,sc:'auto',rin:16,mant:3000000,ab:'6 airbags',esc:true,cl:140,disp:76,ret:62,
+ tinfo:'Trendline · Comfortline · Highline · Sportline. Cambia caja, potencia y equipamiento. Es donde más importa saber exactamente qué versión estás mirando.',
+ s:{fiabilidad:58,valor:70,altura:92,seguridad:86,garantia:26,respaldo:76,picoplaca:15,espacio:90,confort:88,urbano:56},
+ bad:['Si trae caja DSG DQ200 de siete velocidades y embrague seco, la mecatrónica es un punto de falla conocido y caro.','El módulo de bomba de agua y termostato del EA211 es una falla recurrente y no es barata.','El costo de taller más alto de las 34 opciones, y encima pide gasolina extra.'],
+ good:['150 hp turbo que en altura se traducen en 141: el más rápido del estudio, con margen.','1.395 cc: por debajo del umbral, paga SOAT de carro pequeño teniendo prestaciones de carro grande.','510 litros de baúl y el mejor confort de carretera del grupo.'],
+ v:'Es el que mejor resuelve carretera y altura, y el que más caro cuesta sostener. La decisión se juega en una pregunta: qué caja trae. Con convertidor de par es defendible; con DSG seca, estás comprando una lotería de siete millones.'},
+
+{id:'kwidN',c:N,n:'Renault Kwid Intens',body:'Hatchback',yr:'0 km · 2026',p:[56,56],eng:'1.0 3 cil. atmosférico',hp:65,tq:'93 Nm',asp:'NA',kg:825,tr:290,gb:'MT 5',ft:'corriente',kpg:62,cc:999,sc:'auto',rin:14,mant:900000,ab:'4 airbags',esc:true,cl:185,disp:78,ret:62,
+ tinfo:'Referencia: Intens. La gama va de Life a Iconic. Bajar de Intens implica perder airbags y control de estabilidad.',
+ s:{fiabilidad:64,valor:66,altura:20,seguridad:52,garantia:92,respaldo:95,picoplaca:15,espacio:45,confort:46,urbano:92},
+ bad:['65 hp que en Bogotá son 48: es de los más lentos de las 34 opciones.','Pagas $56 millones por un carro que usado con tres años cuesta $40. Esa diferencia es depreciación que vas a absorber tú.','Los patrones de falla del modelo siguen siendo los mismos, aunque ahora los cubre la garantía.'],
+ good:['El desembolso mensual más bajo de todo el mercado nuevo a gasolina, sin discusión.','Cuatro airbags, ESC, asistente de arranque en pendiente e Isofix: un salto real frente al Kwid usado de 2020.','Sin revisión técnico-mecánica durante los primeros años, y rines de 14 con llantas baratas.'],
+ v:'Notoriamente mejor equipado que el usado del mismo nombre, sobre todo en seguridad. El problema es el precio: por lo que cuesta este Kwid nuevo, el usado te pone en un segmento entero por encima.'},
+
+{id:'picantoN',c:N,n:'Kia Picanto Vibrant MT 1.0',body:'Hatchback',yr:'0 km · 2026',p:[58,58],eng:'1.0 atmosférico',hp:66,tq:'95 Nm',asp:'NA',kg:940,tr:255,gb:'MT 5',ft:'corriente',kpg:60,cc:998,sc:'auto',rin:14,mant:1200000,ab:'6 airbags',esc:true,cl:152,disp:62,ret:88,
+ tinfo:'Referencia: Vibrant MT. Bajar en la gama recorta multimedia y equipamiento; el paquete de seis airbags con ESC es lo que hay que conservar.',
+ s:{fiabilidad:92,valor:70,altura:22,seguridad:66,garantia:94,respaldo:84,picoplaca:15,espacio:42,confort:58,urbano:94},
+ bad:['El 1.0 nuevo tiene menos potencia que el 1.2 que se vendió usado: 66 hp contra 84. En altura son 49 hp reales.','Baúl de 255 litros y 3,59 m de largo: es un city car sin ambiciones familiares.','Por $58 millones nuevos, el mismo dinero compra un Mazda 2 o un Virtus usado de tres años.'],
+ good:['La mejor combinación de depreciación baja y desembolso bajo de todo el mercado nuevo.','Seis airbags, ABS con EBD, control de estabilidad, Isofix y cámara de reversa de serie.','Motor de 998 cc con rines de 14: SOAT y llantas en el mínimo de la tabla.'],
+ v:'El 0 km más sensato del grupo para uso estrictamente urbano: mecánica probada, seguridad seria y la reventa que mejor aguanta entre los nuevos. La factura la pagas en potencia.'},
+
+{id:'grandi10',c:N,n:'Hyundai Grand i10 Attraction',body:'Hatchback',yr:'0 km · 2026',p:[62,62],eng:'1.0 3 cil. atmosférico',hp:65,tq:'94 Nm',asp:'NA',kg:950,tr:360,gb:'MT 5',ft:'corriente',kpg:58,cc:998,sc:'auto',rin:14,mant:1200000,ab:'6 airbags',esc:false,cl:165,disp:45,ret:78,
+ tinfo:'Referencia: Attraction, que es la versión de acceso. Subir en la gama suma equipamiento y confirma asistencias.',
+ s:{fiabilidad:88,valor:70,altura:21,seguridad:60,garantia:92,respaldo:86,picoplaca:15,espacio:66,confort:58,urbano:90},
+ bad:['65 hp para 950 kg: en altura quedan 48 hp. Con cuatro pasajeros y una loma, sufre.','La ficha del Attraction destaca seis airbags y ABS, pero no confirma control de estabilidad: verifícalo antes de firmar.','$62 millones lo dejan a un pelo del umbral tributario de los $57,3 millones de avalúo.'],
+ good:['360 litros de baúl en un carro de 3,81 m: el mejor aprovechamiento de espacio del mercado nuevo de entrada.','998 cc y rines de 14: costos fijos y llantas en el piso de la tabla.','Seis airbags y pantalla de 8 pulgadas con CarPlay y Android Auto.'],
+ v:'Sorprende por el baúl: carga como carros mucho más grandes. Si el uso es urbano y necesitas espacio de carga sin subir de tamaño, es el 0 km más práctico de la lista.'},
+
+{id:'dzire',c:N,n:'Suzuki Dzire GL MT híbrido ligero',body:'Sedán',yr:'0 km · 2026',p:[66,66],eng:'1.2 3 cil. + híbrido ligero 12 V',hp:80,tq:'112 Nm + 60 Nm eléctricos',asp:'MHEV',kg:940,tr:378,gb:'MT 5',ft:'corriente',kpg:70,cc:1197,sc:'auto',rin:15,mant:1180000,ab:'6 airbags',esc:true,cl:163,disp:42,ret:74,
+ tinfo:'Referencia: GL MT. El GLX suma equipamiento y opción de caja automática, subiendo el precio por encima del presupuesto. El paquete de seis airbags con ESC ya viene desde el GL.',
+ s:{fiabilidad:90,valor:78,altura:26,seguridad:68,garantia:92,respaldo:78,picoplaca:88,espacio:74,confort:58,urbano:86},
+ bad:['El beneficio de pico y placa depende de que el Distrito siga tratando a los mild hybrid como híbridos. El alcalde ya apuntó a esa categoría.','80 hp con apoyo eléctrico de 12 voltios: la asistencia es marginal, no mueve el carro en eléctrico.','A $66 millones cruza el umbral tributario: paga 2,5 % de impuesto en vez de 1,5 %.'],
+ good:['El menor gasto de combustible entre todos los de gasolina de la lista, y con carrocería de sedán.','Es la única forma, en este presupuesto, de comprar exención de pico y placa con cuatro puertas y 378 litros de baúl.','Seis airbags, ABS con EBD, ESC, asistencia de frenado, arranque en pendiente e Isofix desde la versión de acceso.'],
+ v:'La jugada más interesante del mercado nuevo en este rango, y la más expuesta a que le cambien las reglas. Si los dos días extra de circulación te resuelven la vida, ningún otro carro del estudio te los da por este precio.'},
+
+{id:'polotrackN',c:N,n:'VW Polo Track 1.6',body:'Hatchback',yr:'0 km · 2026',p:[67,67],eng:'1.6 MSI atmosférico',hp:110,tq:'155 Nm',asp:'NA',kg:1080,tr:300,gb:'MT 5',ft:'corriente',kpg:52,cc:1598,sc:'auto',rin:15,mant:1700000,ab:'4 airbags',esc:true,cl:165,disp:12,ret:78,
+ tinfo:'Versión única. Sin decisiones de equipamiento que tomar, sin riesgo de comprar la versión equivocada. Es el modelo más consistente del estudio.',
+ s:{fiabilidad:88,valor:70,altura:51,seguridad:70,garantia:92,respaldo:82,picoplaca:15,espacio:55,confort:66,urbano:80},
+ bad:['Se sale del presupuesto de 65 millones y cruza el umbral tributario de avalúo.','1.598 cc: cae en la franja alta de SOAT, casi cien mil pesos más al año.','Cuatro airbags, cuando varios usados del mismo precio traen seis o siete.'],
+ good:['110 hp: con distancia, el motor más potente del mercado nuevo en este rango, y el único que no se siente ahogado en altura.','Mecánica MSI, sin turbo ni banda húmeda ni caja de doble embrague: cero puntos de falla caros.','Sin revisión técnico-mecánica durante sus primeros años.'],
+ v:'El único 0 km del rango que es un carro completo y no un city car. Compáralo directamente con su versión usada en la tabla de costos: la diferencia mensual es más pequeña de lo que sugiere la diferencia de precio.'},
+
+{id:'jace10x',c:N,n:'JAC E10X eléctrico',body:'Hatchback eléctrico',yr:'0 km · 2026',p:[61,61],eng:'Eléctrico · batería 31,4 kWh',hp:60,tq:'150 Nm',asp:'EV',kg:1100,tr:140,gb:'Directa',ft:'ev',kwh100:13.6,cc:0,sc:'auto',rin:15,mant:420000,ab:'2 airbags',esc:true,cl:150,disp:15,ret:40,
+ tinfo:'Versión prácticamente única. La única decisión real es de configuración de batería si el importador ofrece más de una.',
+ s:{fiabilidad:70,valor:76,altura:52,seguridad:42,garantia:82,respaldo:45,picoplaca:96,espacio:40,confort:60,urbano:88},
+ bad:['Solo dos airbags. El punto más difícil de justificar cuando city cars a gasolina del mismo precio traen seis.','La depreciación se come toda la ventaja de operación: es su rubro mensual más grande con diferencia.','Red JAC pequeña y talleres certificados en alta tensión escasos.','Sin punto de carga en casa o en el trabajo, este carro no funciona. Es requisito, no preferencia.'],
+ good:['El costo de energía más bajo de las 34 opciones: opera por una fracción de lo que cuesta cualquier motor de combustión.','Tarifa de impuesto tope de 1,2 % con 60 % de descuento por cinco años, más exención de pico y placa.','Mantenimiento casi nulo: sin aceite, sin filtros, sin correa, sin embrague, y frenos que duran el doble.'],
+ v:'Apaga la depreciación en la tabla de costos y es el carro más barato de todo el estudio por goleada. Enciéndela y cae al montón. Esa es exactamente la apuesta: cuánto crees que va a valer una batería china de 2026 dentro de cinco años.'},
+
+{id:'jmev2',c:N,n:'JMEV 2 eléctrico',body:'Hatchback eléctrico',yr:'0 km · 2026',p:[52,52],eng:'Eléctrico · batería LFP 15,9 kWh',hp:35,tq:'84 Nm',asp:'EV',kg:950,tr:45,gb:'Directa',ft:'ev',kwh100:10.6,cc:0,sc:'auto',rin:14,mant:380000,ab:'2 airbags',esc:false,cl:145,disp:15,ret:32,
+ tinfo:'Versión única.',
+ s:{fiabilidad:62,valor:70,altura:24,seguridad:36,garantia:78,respaldo:35,picoplaca:96,espacio:22,confort:45,urbano:90},
+ bad:['45 litros de baúl: menos que una maleta de cabina. El espacio de carga más reducido del estudio.','35 hp y 200 km declarados lo dejan fuera de cualquier uso que no sea urbano y corto.','Dos airbags y sin control de estabilidad confirmado, en una marca sin trayectoria en el país.'],
+ good:['Es el carro de cinco puertas más barato del mercado nuevo colombiano.','Costo de energía y de mantenimiento en el mínimo absoluto de la tabla.','Exención de pico y placa y el tratamiento fiscal preferencial de los eléctricos.'],
+ v:'Movilidad urbana barata y limpia, no un carro de uso mixto. Para el criterio de este estudio queda corto en espacio, potencia y seguridad. Solo tiene sentido como segundo vehículo.'},
+
+{id:'xiaoma',c:N,n:'FAW Bestune Xiaoma eléctrico',body:'City car eléctrico',yr:'0 km · 2026',p:[45,45],eng:'Eléctrico · batería LFP 13,9 kWh',hp:27,tq:'85 Nm',asp:'EV',kg:850,tr:81,gb:'Directa',ft:'ev',kwh100:10.7,cc:0,sc:'auto',rin:13,mant:360000,ab:'2 airbags',esc:true,cl:140,disp:25,ret:32,
+ tinfo:'Gama muy corta, con diferencias principalmente de configuración de batería y color.',
+ s:{fiabilidad:62,valor:82,altura:20,seguridad:38,garantia:78,respaldo:35,picoplaca:96,espacio:32,confort:40,urbano:92},
+ bad:['27 hp. No es un carro de carretera ni de vía rápida: es un vehículo de barrio y de trayecto corto.','170 km declarados se traducen en unos 130 reales, y menos con aire acondicionado o subiendo lomas.','Marca sin red consolidada en Colombia y reventa completamente incierta.'],
+ good:['El desembolso mensual más bajo de las 34 opciones, sin ninguna cercana.','Precio de entrada de $45 millones: el que menos capital inmoviliza de todo el estudio.','Rines de 13, cero cilindraje y tarifa eléctrica de impuesto: los costos fijos más bajos posibles.'],
+ v:'La entrada más barata al carro nuevo y a los beneficios de circulación, con la potencia de una moto grande. Como único vehículo para uso mixto no da la talla; como carro urbano exclusivo y con enchufe en casa, el costo de operación es imbatible.'}
+];
+
+const DERATE={NA:.74,Turbo:.94,MHEV:.78,EV:1};
+const ASPN={NA:'Atmosférico',Turbo:'Turbo',MHEV:'Híbrido ligero',EV:'Eléctrico'};
+const RIN={13:800000,14:900000,15:1200000,16:1650000,17:2250000};
+const SOAT={auto:{lo:447300,hi:544700},camioneta:{lo:792800,hi:946600}};
+const RTM=220000, VIDA_LLANTA=40000;
+CARS.forEach(c=>{
+  c.hpAlt=Math.round(c.hp*DERATE[c.asp]);
+  c.ptSea=+(c.hp/(c.kg/1000)).toFixed(1);
+  c.ptAlt=+(c.hpAlt/(c.kg/1000)).toFixed(1);
+  c.s.versiones=Math.round(100-c.disp*0.75);
+  c.pt=c.asp==='EV'?'BEV':c.asp==='MHEV'?'MHEV':c.asp==='PHEV'?'PHEV':'ICE';
+});
+const PTS=[
+ {k:'ICE',l:'ICE',d:'Solo gasolina. No se enchufa nunca. Paga pico y placa.'},
+ {k:'MHEV',l:'MHEV',d:'Híbrido ligero: se recarga solo con el motor y la frenada, nunca se enchufa. Exento de pico y placa hoy, con riesgo regulatorio.'},
+ {k:'PHEV',l:'PHEV',d:'Híbrido enchufable: necesita toma para tener sentido. No hay ninguno en este rango de precio.'},
+ {k:'BEV',l:'BEV',d:'Eléctrico puro: sin punto de carga propio, no es una opción viable. Exento de pico y placa e impuesto reducido.'}
+];
+let PT=new Set(PTS.map(p=>p.k));
+const okPT=c=>PT.has(c.pt);
+
+const TRIMS={
+  base:{lbl:'Acceso',note:'Versión de entrada de cada gama. Caen la seguridad y el confort, baja el precio, bajan las llantas por rines más pequeños y mejora la aptitud urbana. En los modelos de gama muy abierta el desplome es brutal; en los de gama cerrada apenas se nota.',
+    d:{seguridad:-38,confort:-32,urbano:8,fiabilidad:5,valor:7},pf:-0.11,rin:-1},
+  media:{lbl:'Intermedia',note:'Punto de referencia del estudio. Todos los puntajes escritos en las fichas corresponden a este nivel, que en la mayoría de las gamas es también el mejor negocio.',d:{},pf:0,rin:0},
+  full:{lbl:'Tope de gama',note:'Versión más equipada. Sube seguridad y confort, sube el precio y con él el impuesto, el seguro y la depreciación, suben las llantas por rines más grandes, y baja un poco la fiabilidad por la electrónica adicional.',
+    d:{seguridad:14,confort:26,urbano:-7,fiabilidad:-6,valor:-9},pf:0.13,rin:1}
+};
+let trim='media';
+
+// ---------- motor de costos ----------
+let CFG={km:1250,corriente:15900,extra:19400,kwh:850,seguro:true,deprec:true};
+const CIN=[
+ {k:'km',n:'Kilómetros al mes',min:200,max:3000,step:50,fmt:v=>v.toLocaleString('es-CO')+' km',sub:v=>(v*12).toLocaleString('es-CO')+' km al año'},
+ {k:'corriente',n:'Gasolina corriente',min:10000,max:26000,step:100,fmt:v=>'$'+v.toLocaleString('es-CO'),sub:()=>'por galón, en Bogotá'},
+ {k:'extra',n:'Gasolina extra',min:12000,max:32000,step:100,fmt:v=>'$'+v.toLocaleString('es-CO'),sub:()=>'por galón, precio liberado'},
+ {k:'kwh',n:'Energía eléctrica',min:400,max:1600,step:10,fmt:v=>'$'+v.toLocaleString('es-CO'),sub:()=>'por kWh, carga en casa'}
+];
+
+function adj(c){
+  const T=TRIMS[trim],d=c.disp/100,s={...c.s};
+  for(const k in T.d) s[k]=Math.max(0,Math.min(100,Math.round(s[k]+T.d[k]*d)));
+  const f=1+T.pf*d;
+  const rines=[13,14,15,16,17];
+  let ri=rines.indexOf(c.rin)+(d>0.35?T.rin:0);
+  ri=Math.max(0,Math.min(4,ri));
+  return {s,p:[Math.round(c.p[0]*f),Math.round(c.p[1]*f)],rin:rines[ri],f};
+}
+
+function costs(c,a){
+  const precio=(a.p[0]+a.p[1])/2*1e6;
+  const avaluo=precio*(c.c===N?0.95:0.90);
+  // combustible o energía
+  const comb=c.ft==='ev'
+    ? CFG.km*(c.kwh100/100)*CFG.kwh
+    : CFG.km/c.kpg*(c.ft==='extra'?CFG.extra:CFG.corriente);
+  // taller + llantas
+  const taller=c.mant/12*(CFG.km*12/15000);
+  const llantas=CFG.km*(RIN[a.rin]/VIDA_LLANTA);
+  // fijos
+  const soat=(c.cc>=1500?SOAT[c.sc].hi:SOAT[c.sc].lo)/12;
+  const tasa=c.ft==='ev'?0.012*0.4:(avaluo<=57349000?0.015:0.025);
+  const imp=avaluo*tasa/12;
+  const rtm=(c.c===N?0:RTM)/12;
+  const seg=CFG.seguro?avaluo*(c.ft==='ev'?0.046:0.038)/12:0;
+  // depreciación
+  let tasaDep=0.215-(c.ret/100)*0.115;
+  if(c.c===N) tasaDep+=0.035;
+  const dep=CFG.deprec?precio*tasaDep/12:0;
+  const fijos=soat+imp+rtm;
+  const desemb=comb+taller+llantas+fijos+seg;
+  return {comb,taller,llantas,tallerLlantas:taller+llantas,soat,imp,rtm,fijos,seg,dep,desemb,total:desemb+dep,precio,avaluo,tasa,tasaDep};
+}
+
+let W={};CATS.forEach(c=>W[c.k]=c.w);
+const BASE={};CATS.forEach(c=>BASE[c.k]=c.w);
+
+function build(){
+  const rows=CARS.map(c=>{const a=adj(c);return{c,a,co:costs(c,a)};});
+  const norm=(key,get)=>{
+    const vs=rows.map(get);
+    const lo=Math.min(...vs),hi=Math.max(...vs);
+    rows.forEach((r,i)=>{r.a.s[key]=hi===lo?50:Math.round(100*(1-(vs[i]-lo)/(hi-lo)));});
+  };
+  norm('consumo',r=>r.co.comb);
+  norm('mantenimiento',r=>r.co.tallerLlantas);
+  norm('costofijo',r=>r.co.fijos+r.co.seg);
+  norm('reventa',r=>r.co.dep);
+  return rows;
+}
+const score=(s,w)=>{let t=0,v=0;for(const k in w){t+=w[k];v+=s[k]*w[k];}return t?v/t:0;};
+const ranked=w=>build().map(r=>({...r,v:score(r.a.s,w)})).sort((x,y)=>y.v-x.v);
+const baseOrder={};
+(function(){const t=trim;trim='media';ranked(BASE).forEach((r,i)=>baseOrder[r.c.id]=i+1);trim=t;})();
+let filter='todos';
+
+const $=s=>document.querySelector(s);
+const cop=v=>'$'+Math.round(v).toLocaleString('es-CO');
+const money=p=>p[0]===p[1]?`$${p[0]} M`:`$${p[0]}–${p[1]} M`;
+
+function renderContext(){
+  const pool=CARS.filter(okPT);
+  const rows=[...pool].sort((a,b)=>b.ptAlt-a.ptAlt);
+  const max=Math.max(1,...pool.map(c=>c.ptSea));
+  $('#altchart').innerHTML=rows.map(c=>`
+   <div class="altrow ${c.asp}"><span class="nm">${c.n}${c.c===N?' ·0KM':''}</span>
+     <span class="bartrack"><i class="bar-sea" style="width:${c.ptSea/max*100}%"></i><i class="bar-bog" style="width:${c.ptAlt/max*100}%"></i></span>
+     <span class="val"><b>${c.ptAlt}</b> <span style="opacity:.5">/ ${c.ptSea}</span></span></div>`).join('');
+  const sp=[...pool].sort((a,b)=>b.disp-a.disp);
+  $('#spread').innerHTML=sp.map(c=>`
+   <div class="sprow"><span class="n">${c.n}${c.c===N?' ·0KM':''}</span>
+     <span class="t"><i style="width:${c.disp}%"></i></span>
+     <span class="v">${c.disp>=75?'muy abierta':c.disp>=55?'abierta':c.disp>=35?'moderada':'cerrada'}</span></div>`).join('');
+}
+
+function renderPT(){
+  const cnt={};PTS.forEach(p=>cnt[p.k]=CARS.filter(c=>c.pt===p.k).length);
+  const html=PTS.map(p=>`<button class="filt pt" data-p="${p.k}" aria-pressed="${PT.has(p.k)}"${cnt[p.k]?'':' disabled style="opacity:.35;cursor:not-allowed"'} title="${esc(p.d)}">${p.l} (${cnt[p.k]})</button>`).join('')
+    +`<button class="wact" id="ptplug" title="Deja fuera todo lo que necesite enchufe">Sin cargador en casa</button>`;
+  ['#ptbtns','#ptbtns2'].forEach(sel=>{const el=$(sel);if(el)el.innerHTML=html;});
+  document.querySelectorAll('.pt').forEach(b=>b.addEventListener('click',()=>{
+    const k=b.dataset.p;
+    if(PT.has(k)){if(PT.size>1)PT.delete(k);}else PT.add(k);
+    render();
+  }));
+  document.querySelectorAll('#ptplug').forEach(b=>b.addEventListener('click',()=>{
+    PT=new Set(['ICE','MHEV']);render();
+  }));
+  const off=PTS.filter(p=>!PT.has(p.k)&&cnt[p.k]);
+  const n=CARS.filter(okPT).length;
+  const nota=$('#ptnote');
+  if(nota){
+    nota.textContent=off.length
+      ? `Mostrando ${n} de ${CARS.length} opciones. Fuera: ${off.map(p=>p.l).join(', ')}. `+
+        (PT.has('MHEV')&&!PT.has('BEV')?'Ojo con la distinción: un híbrido ligero nunca se enchufa — se recarga con el propio motor y la frenada — y aun así está exento de pico y placa. Excluir los eléctricos no obliga a excluirlo.':'')
+      : `Las ${CARS.length} opciones en juego. Un BEV solo tiene sentido con punto de carga propio: si no lo tienes, apágalo aquí y el resto del documento se recalcula.`;
+  }
+}
+
+$('#costinputs').innerHTML=CIN.map(c=>`
+ <div class="slot"><label for="c-${c.k}">${c.n}<span class="wv" id="cv-${c.k}"></span></label>
+   <input type="range" id="c-${c.k}" min="${c.min}" max="${c.max}" step="${c.step}" value="${CFG[c.k]}" data-k="${c.k}" aria-label="${c.n}">
+   <span class="money" id="cs-${c.k}"></span></div>`).join('');
+document.querySelectorAll('#costinputs input').forEach(inp=>inp.addEventListener('input',e=>{
+  CFG[e.target.dataset.k]=+e.target.value;render();
+}));
+document.querySelectorAll('.tog').forEach(b=>b.addEventListener('click',()=>{
+  CFG[b.dataset.k]=!CFG[b.dataset.k];
+  b.setAttribute('aria-pressed',CFG[b.dataset.k]);render();
+}));
+
+$('#sliders').innerHTML=CATS.map(c=>`
+ <div class="slot" id="slot-${c.k}"><label for="w-${c.k}">${c.n}
+   <span class="rt"><span class="wv" id="v-${c.k}">${c.w}</span><span class="pct" id="p-${c.k}"></span></span></label>
+   <p class="hint">${c.hint}</p>
+   <input type="range" id="w-${c.k}" min="0" max="40" value="${c.w}" data-k="${c.k}" aria-label="Peso de ${c.long}">
+   ${MONEY.includes(c.k)?'<span class="money">Calculado en pesos</span>':''}</div>`).join('');
+const PRESETS={
+ 'Uso mixto Bogotá':BASE,
+ 'Costo total mínimo':{fiabilidad:14,mantenimiento:15,valor:13,altura:3,consumo:15,seguridad:5,garantia:3,respaldo:5,reventa:15,picoplaca:4,espacio:2,versiones:1,costofijo:5,confort:0,urbano:0},
+ 'Cero dolores de cabeza':{fiabilidad:23,mantenimiento:8,valor:5,altura:3,consumo:4,seguridad:8,garantia:13,respaldo:13,reventa:8,picoplaca:3,espacio:2,versiones:5,costofijo:5,confort:0,urbano:0},
+ 'Familia y seguridad':{fiabilidad:13,mantenimiento:6,valor:6,altura:5,consumo:5,seguridad:21,garantia:8,respaldo:6,reventa:5,picoplaca:3,espacio:14,versiones:2,costofijo:3,confort:2,urbano:1},
+ 'Carretera y altura':{fiabilidad:12,mantenimiento:5,valor:6,altura:22,consumo:8,seguridad:14,garantia:6,respaldo:5,reventa:5,picoplaca:1,espacio:6,versiones:2,costofijo:3,confort:4,urbano:1},
+ 'Movilidad sin restricción':{fiabilidad:11,mantenimiento:7,valor:6,altura:4,consumo:9,seguridad:9,garantia:7,respaldo:5,reventa:6,picoplaca:24,espacio:3,versiones:2,costofijo:6,confort:1,urbano:0},
+ 'Comprar sin verificar':{fiabilidad:14,mantenimiento:7,valor:7,altura:5,consumo:6,seguridad:10,garantia:9,respaldo:8,reventa:6,picoplaca:3,espacio:3,versiones:15,costofijo:5,confort:1,urbano:1}
+};
+$('#presets').innerHTML=Object.keys(PRESETS).map((p,i)=>`<button class="preset" data-p="${p}" aria-pressed="${i===0}">${p}</button>`).join('');
+$('#filters').innerHTML=[['todos','Todas'],['usado','Usados'],['nuevo','Cero km']].map(([k,l],i)=>`<button class="filt" data-f="${k}" aria-pressed="${i===0}">${l}</button>`).join('');
+$('#trims').innerHTML=Object.entries(TRIMS).map(([k,t])=>`<button class="trim" data-t="${k}" aria-pressed="${k==='media'}">${t.lbl}</button>`).join('');
+
+document.querySelectorAll('#sliders input').forEach(inp=>inp.addEventListener('input',e=>{
+  W[e.target.dataset.k]=+e.target.value;
+  document.querySelectorAll('.preset').forEach(b=>b.setAttribute('aria-pressed','false'));
+  render();
+}));
+document.querySelectorAll('.preset').forEach(b=>b.addEventListener('click',()=>{
+  W={...PRESETS[b.dataset.p]};
+  CATS.forEach(c=>document.getElementById('w-'+c.k).value=W[c.k]);
+  document.querySelectorAll('.preset').forEach(x=>x.setAttribute('aria-pressed','false'));
+  b.setAttribute('aria-pressed','true');render();
+}));
+document.querySelectorAll('.filt').forEach(b=>b.addEventListener('click',()=>{
+  filter=b.dataset.f;
+  document.querySelectorAll('.filt').forEach(x=>x.setAttribute('aria-pressed','false'));
+  b.setAttribute('aria-pressed','true');render();
+}));
+document.querySelectorAll('.trim').forEach(b=>b.addEventListener('click',()=>{
+  trim=b.dataset.t;
+  document.querySelectorAll('.trim').forEach(x=>x.setAttribute('aria-pressed','false'));
+  b.setAttribute('aria-pressed','true');render();
+}));
+
+const WCOL=['#1E3A8F','#31509F','#4566B5','#5A7CC7','#7492D6','#93A9E3'];
+function renderWeights(){
+  const tot=CATS.reduce((a,c)=>a+W[c.k],0);
+  document.getElementById('wtotal').textContent=tot;
+  const st=document.getElementById('wstat');
+  if(tot===0){st.textContent='Todos los criterios están en cero: sin al menos uno con peso, la tabla no puede ordenar nada.';st.className='wstat warn';}
+  else if(tot===100){st.textContent='Exacto. Cada punto equivale a un por ciento del puntaje final.';st.className='wstat ok';}
+  else{st.textContent='No hace falta que sumen 100: el cálculo normaliza solo. Los porcentajes de cada criterio son los que mandan.';st.className='wstat';}
+  CATS.forEach(c=>{
+    document.getElementById('v-'+c.k).textContent=W[c.k];
+    document.getElementById('p-'+c.k).textContent=tot?(W[c.k]/tot*100).toFixed(1).replace('.',',')+' %':'—';
+    document.getElementById('slot-'+c.k).classList.toggle('zero',W[c.k]===0);
+  });
+  document.getElementById('wstack').innerHTML=tot?CATS.map((c,i)=>W[c.k]>0
+    ?`<i style="width:${W[c.k]/tot*100}%;background:${WCOL[i%WCOL.length]}" title="${c.n}: ${(W[c.k]/tot*100).toFixed(1)} %"></i>`:'').join(''):'';
+  CIN.forEach(c=>{
+    document.getElementById('cv-'+c.k).textContent=c.fmt(CFG[c.k]);
+    document.getElementById('cs-'+c.k).textContent=c.sub(CFG[c.k]);
+  });
+}
+document.getElementById('wnorm').addEventListener('click',()=>{
+  const tot=CATS.reduce((a,c)=>a+W[c.k],0);if(!tot)return;
+  const raw=CATS.map(c=>W[c.k]/tot*100),fl=raw.map(x=>Math.floor(x));
+  const falta=100-fl.reduce((a,b)=>a+b,0);
+  raw.map((x,i)=>[x-fl[i],i]).sort((a,b)=>b[0]-a[0]).slice(0,falta).forEach(([,i])=>fl[i]++);
+  CATS.forEach((c,i)=>{W[c.k]=Math.min(40,fl[i]);document.getElementById('w-'+c.k).value=W[c.k];});
+  document.querySelectorAll('.preset').forEach(x=>x.setAttribute('aria-pressed','false'));render();
+});
+document.getElementById('wreset').addEventListener('click',()=>{
+  W={...BASE};CATS.forEach(c=>document.getElementById('w-'+c.k).value=W[c.k]);
+  document.querySelectorAll('.preset').forEach((x,i)=>x.setAttribute('aria-pressed',i===0?'true':'false'));render();
+});
+
+// ---------- configuraciones guardadas ----------
+const STORE='matrizCarrosBogota.v1';
+let SAVED=[], storageOK=true;
+const esc=s=>String(s).replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+const enc=o=>btoa(Array.from(new TextEncoder().encode(JSON.stringify(o)),b=>String.fromCharCode(b)).join(''));
+const dec=s=>JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(String(s).trim().replace(/\s+/g,'')),ch=>ch.charCodeAt(0))));
+
+(function(){
+  try{
+    const raw=localStorage.getItem(STORE);
+    const v=raw?JSON.parse(raw):[];
+    SAVED=Array.isArray(v)?v:[];
+  }catch(e){storageOK=false;SAVED=[];}
+})();
+function persist(){
+  try{localStorage.setItem(STORE,JSON.stringify(SAVED));}
+  catch(e){storageOK=false;}
+}
+function snapshot(){return{w:{...W},trim,filter,pt:[...PT],cfg:{...CFG}};}
+function validCfg(s){return s&&typeof s==='object'&&s.w&&typeof s.w==='object';}
+function applyCfg(s){
+  if(!validCfg(s))return false;
+  W={...BASE};
+  CATS.forEach(c=>{
+    const v=Number(s.w[c.k]);
+    if(Number.isFinite(v)) W[c.k]=Math.max(0,Math.min(40,Math.round(v)));
+    const el=document.getElementById('w-'+c.k); if(el) el.value=W[c.k];
+  });
+  if(s.trim&&TRIMS[s.trim]){
+    trim=s.trim;
+    document.querySelectorAll('.trim').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.t===trim)));
+  }
+  if(s.filter&&['todos','usado','nuevo'].includes(s.filter)){
+    filter=s.filter;
+    document.querySelectorAll('.filt').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.f===filter)));
+  }
+  if(Array.isArray(s.pt)){
+    const ok=s.pt.filter(k=>PTS.some(p=>p.k===k));
+    if(ok.length) PT=new Set(ok);
+  }
+  if(s.cfg&&typeof s.cfg==='object'){
+    CIN.forEach(c=>{
+      const v=Number(s.cfg[c.k]);
+      if(Number.isFinite(v)) CFG[c.k]=Math.max(c.min,Math.min(c.max,v));
+      const el=document.getElementById('c-'+c.k); if(el) el.value=CFG[c.k];
+    });
+    ['seguro','deprec'].forEach(k=>{if(typeof s.cfg[k]==='boolean')CFG[k]=s.cfg[k];});
+    document.querySelectorAll('.tog').forEach(b=>b.setAttribute('aria-pressed',String(!!CFG[b.dataset.k])));
+  }
+  document.querySelectorAll('.preset').forEach(x=>x.setAttribute('aria-pressed','false'));
+  render();
+  return true;
+}
+let flash='';
+function setFlash(msg,kind){flash=msg;flashKind=kind||'';renderSaved();setTimeout(()=>{if(flash===msg){flash='';renderSaved();}},4200);}
+let flashKind='';
+
+function renderSaved(){
+  const st=document.getElementById('savestat');
+  if(flash){st.textContent=flash;st.className='savestat '+flashKind;}
+  else if(!storageOK){
+    st.textContent='Este navegador no permite guardar en disco desde aquí, así que las configuraciones solo viven durante esta sesión. Usa «Copiar código» o «Descargar» antes de cerrar y las recuperas con «Pegar código» o «Cargar archivo».';
+    st.className='savestat warn';
+  }else if(!SAVED.length){
+    st.textContent='Ninguna configuración guardada todavía. Ajusta pesos, kilometraje y precios como quieras, ponle un nombre y guarda. Se conservan en este navegador aunque cierres el documento.';
+    st.className='savestat';
+  }else{
+    const n=SAVED.length;
+    st.textContent=n+(n===1?' configuración guardada':' configuraciones guardadas')+' en este navegador. Se conservan al cerrar el documento, pero no viajan a otro equipo: para eso están «Copiar código» y «Descargar».';
+    st.className='savestat';
+  }
+  document.getElementById('savelist').innerHTML=SAVED.map((s,i)=>{
+    const tot=CATS.reduce((a,c)=>a+(Number(s.w[c.k])||0),0);
+    const top=CATS.map(c=>({n:c.n,v:Number(s.w[c.k])||0})).sort((a,b)=>b.v-a.v).slice(0,3)
+      .filter(x=>x.v>0).map(x=>x.n+' '+(tot?Math.round(x.v/tot*100):0)+'%').join(' · ')||'sin pesos';
+    const cf=s.cfg||{};
+    const meta=[(Number(cf.km)||0).toLocaleString('es-CO')+' km/mes',
+      TRIMS[s.trim]?TRIMS[s.trim].lbl.toLowerCase():'intermedia',
+      Array.isArray(s.pt)&&s.pt.length<4?s.pt.join('+'):'todo tren motriz',
+      cf.deprec===false?'sin depreciación':'con depreciación'].join(' · ');
+    return `<div class="scard">
+      <div class="sh"><b>${esc(s.name)}</b><span>${esc(s.date||'')}</span></div>
+      <div class="sm">${esc(top)}</div>
+      <div class="sm2">${esc(meta)}</div>
+      <div class="sb">
+        <button class="wact" data-a="apply" data-i="${i}">Aplicar</button>
+        <button class="wact" data-a="update" data-i="${i}">Actualizar</button>
+        <button class="wact" data-a="del" data-i="${i}">Borrar</button>
+      </div></div>`;
+  }).join('');
+  document.querySelectorAll('#savelist .wact').forEach(b=>b.addEventListener('click',()=>{
+    const i=+b.dataset.i, s=SAVED[i]; if(!s)return;
+    if(b.dataset.a==='apply'){
+      applyCfg(s);
+      document.getElementById('cfgname').value=s.name;
+      setFlash('Configuración «'+s.name+'» aplicada.','ok');
+    }else if(b.dataset.a==='update'){
+      Object.assign(s,snapshot(),{date:new Date().toLocaleDateString('es-CO',{day:'2-digit',month:'short',year:'2-digit'})});
+      persist();setFlash('«'+s.name+'» actualizada con los valores actuales.','ok');
+    }else{
+      const n=s.name;SAVED.splice(i,1);persist();setFlash('«'+n+'» eliminada.','');
+    }
+  }));
+}
+
+document.getElementById('cfgsave').addEventListener('click',()=>{
+  const inp=document.getElementById('cfgname');
+  const name=(inp.value||'').trim()||'Configuración '+(SAVED.length+1);
+  const date=new Date().toLocaleDateString('es-CO',{day:'2-digit',month:'short',year:'2-digit'});
+  const ex=SAVED.findIndex(s=>s.name.toLowerCase()===name.toLowerCase());
+  if(ex>=0) Object.assign(SAVED[ex],snapshot(),{name,date});
+  else SAVED.unshift({name,date,...snapshot()});
+  persist();inp.value='';
+  setFlash(ex>=0?'«'+name+'» reemplazada.':'«'+name+'» guardada.','ok');
+});
+document.getElementById('cfgcopy').addEventListener('click',async()=>{
+  const code=enc({...snapshot(),name:(document.getElementById('cfgname').value||'').trim()||'Configuración'});
+  try{
+    await navigator.clipboard.writeText(code);
+    setFlash('Código copiado al portapapeles. Guárdalo donde quieras y recupéralo con «Pegar código».','ok');
+  }catch(e){
+    window.prompt('Copia este código para recuperar la configuración más adelante:',code);
+  }
+});
+document.getElementById('cfgpaste').addEventListener('click',()=>{
+  const raw=window.prompt('Pega aquí el código de una configuración guardada:');
+  if(!raw)return;
+  try{
+    const s=dec(raw);
+    if(!applyCfg(s))throw 0;
+    const name=(s.name||'Configuración importada');
+    if(!SAVED.some(x=>x.name.toLowerCase()===name.toLowerCase())){
+      SAVED.unshift({name,date:new Date().toLocaleDateString('es-CO',{day:'2-digit',month:'short',year:'2-digit'}),...s});
+      persist();
+    }
+    setFlash('Configuración «'+name+'» importada y aplicada.','ok');
+  }catch(e){setFlash('Ese código no se pudo leer. Verifica que esté completo y sin espacios de más.','warn');}
+});
+document.getElementById('cfgdown').addEventListener('click',()=>{
+  const data=SAVED.length?SAVED:[{name:'Configuración actual',date:new Date().toLocaleDateString('es-CO'),...snapshot()}];
+  try{
+    const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));
+    const a=document.createElement('a');
+    a.href=url;a.download='configuraciones-matriz-carros.json';a.click();
+    setTimeout(()=>URL.revokeObjectURL(url),1500);
+    setFlash('Archivo descargado con '+data.length+(data.length===1?' configuración.':' configuraciones.'),'ok');
+  }catch(e){setFlash('Este navegador bloqueó la descarga. Usa «Copiar código» en su lugar.','warn');}
+});
+document.getElementById('cfgup').addEventListener('click',()=>document.getElementById('cfgfile').click());
+document.getElementById('cfgfile').addEventListener('change',e=>{
+  const f=e.target.files&&e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      let v=JSON.parse(r.result);
+      if(!Array.isArray(v))v=[v];
+      const ok=v.filter(validCfg);
+      if(!ok.length)throw 0;
+      ok.forEach(s=>{
+        const name=s.name||'Importada';
+        const i=SAVED.findIndex(x=>x.name.toLowerCase()===String(name).toLowerCase());
+        const rec={...s,name,date:s.date||new Date().toLocaleDateString('es-CO',{day:'2-digit',month:'short',year:'2-digit'})};
+        if(i>=0)SAVED[i]=rec;else SAVED.push(rec);
+      });
+      persist();applyCfg(ok[0]);
+      setFlash(ok.length+(ok.length===1?' configuración cargada':' configuraciones cargadas')+' desde el archivo.','ok');
+    }catch(err){setFlash('El archivo no tiene un formato válido de configuraciones.','warn');}
+    e.target.value='';
+  };
+  r.onerror=()=>{setFlash('No se pudo leer el archivo.','warn');e.target.value='';};
+  r.readAsText(f);
+});
+
+// ---------- prueba de robustez ----------
+const RCOL=['#1E3A8F','#A8321C','#16674A','#9C6B0B','#5A4B8C','#0F6E7E','#8C3A6B','#4A6B1F','#B4531A','#2F5FA8','#7A2E4E','#3F6B5B'];
+let SEL=null, rsort='consenso', rfilter='todos';
+const RSORTS=[['consenso','Consenso'],['mejor','Mejor caso'],['peor','Peor caso'],['estable','Estabilidad']];
+const RFILT=[['todos','Todas'],['usado','Usados'],['nuevo','Cero km']];
+
+function universe(){
+  const out=Object.entries(PRESETS).map(([n,w])=>({id:'p:'+n,name:n,w}));
+  SAVED.forEach((s,i)=>out.push({id:'s:'+s.name,name:s.name,w:s.w,trim:s.trim,cfg:s.cfg,mine:true}));
+  out.push({id:'now',name:'Actual',w:{...W},trim,cfg:{...CFG},now:true});
+  return out;
+}
+function rankWith(e){
+  const t0=trim,c0={...CFG};
+  if(e.trim&&TRIMS[e.trim])trim=e.trim;
+  if(e.cfg)Object.assign(CFG,e.cfg);
+  const r=ranked(e.w);
+  trim=t0;Object.assign(CFG,c0);
+  return r;
+}
+function robustness(){
+  const uni=universe();
+  if(SEL===null) SEL=new Set(uni.filter(e=>!e.mine).map(e=>e.id));
+  const live=uni.filter(e=>SEL.has(e.id));
+  const keep=c=>(rfilter==='todos'||c.c===rfilter)&&okPT(c);
+  const pool=CARS.filter(keep);
+  const acc={};
+  pool.forEach(c=>acc[c.id]={c,ranks:[],scores:[]});
+  live.forEach(e=>{
+    rankWith(e).filter(r=>keep(r.c)).forEach((r,i)=>{acc[r.c.id].ranks.push(i+1);acc[r.c.id].scores.push(r.v);});
+  });
+  const rows=Object.values(acc).filter(a=>a.ranks.length).map(a=>{
+    const sorted=[...a.ranks].sort((x,y)=>x-y),m=sorted.length;
+    const med=m%2?sorted[(m-1)/2]:(sorted[m/2-1]+sorted[m/2])/2;
+    return {...a,med,best:sorted[0],worst:sorted[m-1],spread:sorted[m-1]-sorted[0],
+      meta:a.scores.reduce((x,y)=>x+y,0)/m};
+  });
+  const cmp={consenso:(a,b)=>b.meta-a.meta,mejor:(a,b)=>a.best-b.best||b.meta-a.meta,
+    peor:(a,b)=>a.worst-b.worst||b.meta-a.meta,estable:(a,b)=>a.spread-b.spread||b.meta-a.meta}[rsort];
+  rows.sort(cmp);
+  const total=pool.length;
+  return {uni,live,rows,total,topN:Math.max(3,Math.min(5,Math.round(total*0.15)))};
+}
+function renderRobust(){
+  const {uni,live,rows,total,topN}=robustness();
+  const cidx={};live.forEach((e,i)=>cidx[e.id]=i);
+  document.getElementById('rfilt').innerHTML=RFILT.map(([k,l])=>
+    `<button class="filt" data-r="${k}" aria-pressed="${k===rfilter}">${l}</button>`).join('');
+  document.querySelectorAll('#rfilt .filt').forEach(b=>b.addEventListener('click',()=>{rfilter=b.dataset.r;renderRobust();}));
+  document.getElementById('rchips').innerHTML=uni.map(e=>{
+    const on=SEL.has(e.id);
+    const col=on?RCOL[cidx[e.id]%RCOL.length]:'var(--rule)';
+    return `<button class="chip" data-id="${esc(e.id)}" aria-pressed="${on}"><span class="dot" style="background:${col}"></span>${esc(e.name)}${e.mine?' ★':''}</button>`;
+  }).join('');
+  document.querySelectorAll('#rchips .chip').forEach(b=>b.addEventListener('click',()=>{
+    const id=b.dataset.id;
+    if(SEL.has(id)){if(SEL.size>1)SEL.delete(id);}else SEL.add(id);
+    renderRobust();
+  }));
+  document.getElementById('rsort').innerHTML=RSORTS.map(([k,l])=>
+    `<button class="filt" data-s="${k}" aria-pressed="${k===rsort}">${l}</button>`).join('');
+  document.querySelectorAll('#rsort .filt').forEach(b=>b.addEventListener('click',()=>{rsort=b.dataset.s;renderRobust();}));
+
+  const maxR=Math.max(2,total);
+  document.getElementById('bands').innerHTML=rows.map(r=>{
+    const pc=v=>((v-1)/(maxR-1))*100;
+    const dots=r.ranks.map((rk,i)=>`<span class="bdot" style="left:${pc(rk)}%;background:${RCOL[i%RCOL.length]}" title="${esc(live[i].name)}: puesto ${rk} de ${total}"></span>`).join('');
+    const solid=r.worst<=topN;
+    return `<div class="brow${solid?' solid':''}">
+      <span class="bn">${r.c.n}${solid?'<i>TOP '+topN+' EN TODAS</i>':''}</span>
+      <span class="btrack"><span class="ax"></span>
+        <span class="bband" style="left:${pc(r.best)}%;width:${Math.max(pc(r.worst)-pc(r.best),0.4)}%"></span>
+        <span class="bmed" style="left:${pc(r.med)}%"></span>${dots}</span>
+      <span class="bv med">${Number.isInteger(r.med)?r.med:r.med.toFixed(1).replace('.',',')}</span>
+      <span class="bv rng">${r.best===r.worst?'fijo':r.best+'–'+r.worst}</span>
+      <span class="bv meta">${r.meta.toFixed(1)}</span></div>`;
+  }).join('');
+
+  const wrap=document.getElementById('bumpwrap');
+  if(live.length<2){
+    wrap.innerHTML='<p style="font-family:var(--mono);font-size:11px;color:var(--ink-soft);padding:18px;margin:0;text-align:center">Activa al menos dos configuraciones para ver los cruces de posición.</p>';
+  }else{
+    const cut=s=>s.length>26?s.slice(0,25)+'…':s;
+    const top=[...rows].sort((a,b)=>b.meta-a.meta).slice(0,Math.min(8,rows.length));
+    const hi=Math.max(2,...top.flatMap(t=>t.ranks));
+    const W_=1000,pL=214,pR=150,pB=20;
+    // altura de los rótulos diagonales, según el más largo
+    const maxLbl=Math.max(...live.map(e=>cut(e.name).length));
+    const pT=Math.min(150,Math.max(52,Math.round(maxLbl*5.6*0.71)+22));
+    const rowH=Math.max(9,Math.min(26,(520-pT-pB)/Math.max(1,hi-1)));
+    const H_=Math.round(pT+pB+(hi-1)*rowH);
+    const x=i=>pL+i*(W_-pL-pR)/(live.length-1);
+    const y=r=>pT+(r-1)*rowH;
+    const gs=top.map((t,k)=>{
+      const col=RCOL[(k+2)%RCOL.length];
+      const pts=t.ranks.map((r,i)=>[x(i),y(r)]);
+      const d='M'+pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join('L');
+      const dots=pts.map(p=>`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="4" fill="${col}" stroke="#F4F6F7" stroke-width="1.5"/>`).join('');
+      return `<g class="bump-g"><title>${esc(t.c.n)} · puestos ${t.best}–${t.worst} de ${total}</title>
+        <path class="bump-line" d="${d}" stroke="${col}"/>${dots}
+        <text x="${pL-12}" y="${(y(t.ranks[0])+4).toFixed(1)}" text-anchor="end" font-family="Saira Condensed,sans-serif" font-size="14" font-weight="600" fill="${col}">${esc(cut(t.c.n))}</text>
+        <text x="${W_-pR+11}" y="${(y(t.ranks[t.ranks.length-1])+4).toFixed(1)}" font-family="IBM Plex Mono,monospace" font-size="11.5" fill="${col}">#${t.ranks[t.ranks.length-1]} · ${t.meta.toFixed(1)}</text></g>`;
+    }).join('');
+    const heads=live.map((e,i)=>{
+      const px=x(i).toFixed(1),py=pT-13;
+      return `<text x="${px}" y="${py}" transform="rotate(-45 ${px} ${py})" text-anchor="start" font-family="IBM Plex Mono,monospace" font-size="10.5" letter-spacing="0.4" fill="${RCOL[i%RCOL.length]}">${esc(cut(e.name)).toUpperCase()}</text>
+      <line x1="${px}" y1="${pT-9}" x2="${px}" y2="${(H_-pB+4).toFixed(1)}" stroke="#D2D8DD" stroke-width="1"/>`;
+    }).join('');
+    const step=hi<=10?1:hi<=24?5:10;
+    const grid=Array.from({length:hi},(_,i)=>i+1).filter(r=>r===1||r%step===0)
+      .map(r=>`<line x1="${pL}" y1="${y(r).toFixed(1)}" x2="${W_-pR}" y2="${y(r).toFixed(1)}" stroke="#D2D8DD" stroke-width="1" stroke-dasharray="2 4"/>
+      <text x="${pL-6}" y="${(y(r)+3).toFixed(1)}" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="9" fill="#9AA4AE">${r}</text>`).join('');
+    wrap.innerHTML=`<svg viewBox="0 0 ${W_} ${H_}" role="img" aria-label="Cruces de posición de los mejores modelos entre configuraciones">${grid}${heads}${gs}</svg>`;
+  }
+
+  const firme=rows.filter(r=>r.worst<=topN).length;
+  const volatil=[...rows].sort((a,b)=>b.spread-a.spread)[0];
+  const merc=(rfilter==='usado'?'entre los usados':rfilter==='nuevo'?'entre los cero kilómetros':'entre las opciones')
+    +(PT.size<PTS.filter(p=>CARS.some(c=>c.pt===p.k)).length?' de tren motriz '+[...PT].filter(k=>CARS.some(c=>c.pt===k)).join(' y '):'')
+    +` (${total} en total)`;
+  document.getElementById('rnote').textContent=
+    `Con ${live.length} configuración${live.length===1?'':'es'} en juego y ${merc}, `+
+    `${firme===0?'ningún modelo se sostiene':firme===1?'un solo modelo se sostiene':firme+' modelos se sostienen'} dentro del top ${topN} en todas. `+
+    (volatil&&volatil.spread>0?`El más sensible a lo que priorices es el ${volatil.c.n}, que se mueve ${volatil.spread} puesto${volatil.spread===1?'':'s'} entre su mejor y su peor configuración.`:'');
+}
+
+// ---------- financiación ----------
+let FIN={on:true,inicial:30,plazo:60,tasaN:19,tasaU:22,mkt:'todos',sort:'cuota'};
+const FININ=[
+ {k:'inicial',n:'Cuota inicial',min:0,max:70,step:1,fmt:v=>v+' %',sub:()=>'los bancos suelen exigir 20–30 %'},
+ {k:'plazo',n:'Plazo del crédito',min:12,max:84,step:6,fmt:v=>v+' meses',sub:v=>(v/12).toFixed(1).replace('.',',')+' años'},
+ {k:'tasaN',n:'Tasa · carro nuevo',min:10,max:32,step:.25,fmt:v=>v.toFixed(2).replace('.',',')+' % E.A.',sub:()=>'mercado 2026: 17 % a 24,5 %'},
+ {k:'tasaU',n:'Tasa · carro usado',min:10,max:34,step:.25,fmt:v=>v.toFixed(2).replace('.',',')+' % E.A.',sub:()=>'los usados pagan 2–3 puntos más'}
+];
+const FINSORT=[['cuota','Salida mensual'],['inicial','Inicial'],['interes','Intereses'],['ratio','Múltiplo']];
+function credito(c,co){
+  const precio=co.precio, ini=precio*FIN.inicial/100, fin=precio-ini;
+  const ea=(c.c===N?FIN.tasaN:FIN.tasaU)/100;
+  const i=Math.pow(1+ea,1/12)-1, n=FIN.plazo;
+  const cuota=FIN.on?(i>0?fin*i/(1-Math.pow(1+i,-n)):fin/n):0;
+  const interes=FIN.on?cuota*n-fin:0;
+  const ratio=FIN.on?(ini+cuota*n)/precio:1;
+  const viejo=parseInt((c.yr.match(/\d{4}/)||['2024'])[0],10)<=2018;
+  return {ini:FIN.on?ini:precio,fin,ea,cuota,interes,ratio,n,viejo};
+}
+function renderFin(){
+  $('#fininputs').innerHTML=FININ.map(c=>`
+   <div class="slot"><label for="f-${c.k}">${c.n}<span class="wv" id="fv-${c.k}">${c.fmt(FIN[c.k])}</span></label>
+     <input type="range" id="f-${c.k}" min="${c.min}" max="${c.max}" step="${c.step}" value="${FIN[c.k]}" data-k="${c.k}" aria-label="${c.n}"${FIN.on?'':' disabled'}>
+     <span class="money" id="fs-${c.k}">${c.sub(FIN[c.k])}</span></div>`).join('');
+  document.querySelectorAll('#fininputs input').forEach(inp=>inp.addEventListener('input',e=>{
+    FIN[e.target.dataset.k]=+e.target.value;renderFin();
+  }));
+  $('#finmkt').innerHTML=[['todos','Todas'],['usado','Usados'],['nuevo','Cero km']]
+    .map(([k,l])=>`<button class="filt" data-m="${k}" aria-pressed="${k===FIN.mkt}">${l}</button>`).join('');
+  document.querySelectorAll('#finmkt .filt').forEach(b=>b.addEventListener('click',()=>{FIN.mkt=b.dataset.m;renderFin();}));
+  $('#finsort').innerHTML=FINSORT.map(([k,l])=>`<button class="filt" data-s="${k}" aria-pressed="${k===FIN.sort}">${l}</button>`).join('');
+  document.querySelectorAll('#finsort .filt').forEach(b=>b.addEventListener('click',()=>{FIN.sort=b.dataset.s;renderFin();}));
+  document.querySelectorAll('#fintogs .tog').forEach(b=>{
+    b.setAttribute('aria-pressed',String(FIN.on));
+    b.textContent=FIN.on?'Financiado':'De contado';
+  });
+
+  const pool=CARS.filter(okPT).filter(c=>FIN.mkt==='todos'||c.c===FIN.mkt)
+    .map(c=>{const a=adj(c),co=costs(c,a);return {c,a,co,cr:credito(c,co)};})
+    .map(r=>({...r,mes:r.cr.cuota+r.co.comb+r.co.tallerLlantas+r.co.fijos+r.co.seg}));
+  const cmp={cuota:(a,b)=>a.mes-b.mes,inicial:(a,b)=>a.cr.ini-b.cr.ini,
+    interes:(a,b)=>a.cr.interes-b.cr.interes,ratio:(a,b)=>a.cr.ratio-b.cr.ratio}[FIN.sort];
+  pool.sort(cmp);
+  const max=Math.max(1,...pool.map(r=>r.mes));
+  const mm=v=>'$'+(v/1e6).toFixed(1).replace('.',',')+' M';
+  $('#finrows').innerHTML=pool.map(r=>{
+    const seg=[[r.cr.cuota,'f1','Cuota del crédito'],[r.co.comb,'f2','Combustible'],
+      [r.co.tallerLlantas,'f3','Taller y llantas'],[r.co.fijos,'f4','SOAT, impuesto y revisión'],[r.co.seg,'f5','Seguro']];
+    const bars=seg.filter(s=>s[0]>0).map(s=>`<i class="${s[1]}" style="width:${s[0]/max*100}%" title="${s[2]}: ${cop(s[0])}"></i>`).join('');
+    const rc=r.cr.ratio<=1.30?'r-ok':r.cr.ratio<=1.40?'r-mid':'r-bad';
+    const sub=FIN.on
+      ? `inicial <b>${mm(r.cr.ini)}</b> · intereses <b>${mm(r.cr.interes)}</b> en ${r.cr.n} meses · pagas <span class="${rc}">${r.cr.ratio.toFixed(2).replace('.',',')}×</span> el precio${r.cr.viejo?' · <b style="color:var(--signal)">modelo viejo: varios bancos no financian más de 10 años</b>':''}`
+      : `desembolso único de <b>${mm(r.cr.ini)}</b> · sin intereses`;
+    return `<div class="frow">
+      <span class="fn">${r.c.n}<em>${r.c.c===N?'0 KM · '+FIN.tasaN.toFixed(2).replace('.',',')+' % E.A.':'USADO · '+FIN.tasaU.toFixed(2).replace('.',',')+' % E.A.'}</em></span>
+      <span><span class="fbar">${bars}</span><span class="fsub">${sub}</span></span>
+      <span class="fv">${cop(r.mes)}<small>al mes</small></span></div>`;
+  }).join('');
+  const lo=pool[0], hi=pool[pool.length-1];
+  const nota=$('#finnote');
+  if(!pool.length){nota.textContent='No hay opciones con los filtros actuales.';return;}
+  const rs=pool.map(r=>r.cr.ratio), rlo=Math.min(...rs), rhi=Math.max(...rs);
+  nota.textContent=FIN.on
+    ? `Con ${FIN.inicial} % de inicial a ${FIN.plazo} meses, la salida de caja va desde ${cop(lo.mes)} mensuales (${lo.c.n}) hasta ${cop(hi.mes)} (${hi.c.n}). `+
+      `La cuota pesa entre ${Math.round(Math.min(...pool.map(r=>r.cr.cuota/r.mes*100)))} % y ${Math.round(Math.max(...pool.map(r=>r.cr.cuota/r.mes*100)))} % de todo lo que pagas al mes: más que combustible, taller y pólizas juntos en casi todos los casos. `+
+      `Los múltiplos van de ${rlo.toFixed(2).replace('.',',')}× a ${rhi.toFixed(2).replace('.',',')}× y apenas se diferencian entre carros — el múltiplo no habla del carro, habla del plazo y la tasa que aceptes. `+
+      (rlo>1.30?'A este plazo, ninguna opción pasa la prueba del 1,30: baja a 36 o 48 meses y mira la diferencia.':'')
+    : `De contado desaparece la cuota, pero inmovilizas el precio completo de una vez: desde ${mm(Math.min(...pool.map(r=>r.cr.ini)))} hasta ${mm(Math.max(...pool.map(r=>r.cr.ini)))}. La salida mensual queda solo en operación, entre ${cop(lo.mes)} y ${cop(hi.mes)}.`;
+  renderIng();
+}
+document.querySelectorAll('#fintogs .tog').forEach(b=>b.addEventListener('click',()=>{FIN.on=!FIN.on;renderFin();}));
+
+// ---------- capacidad de compra ----------
+const SMMLV=1750905, PISO=3*SMMLV;
+let ING={ingreso:9000000,otras:0,ratio:30,ahorro:20000000};
+const INGIN=[
+ {k:'ingreso',n:'Ingreso familiar mensual',min:2000000,max:40000000,step:250000,fmt:v=>cop(v),
+  sub:v=>(v/SMMLV).toFixed(1).replace('.',',')+' salarios mínimos'},
+ {k:'ahorro',n:'Ahorro para la inicial',min:0,max:80000000,step:1000000,fmt:v=>'$'+(v/1e6).toFixed(0)+' M',
+  sub:()=>'lo que tienes disponible hoy'},
+ {k:'otras',n:'Otras cuotas que ya pagas',min:0,max:8000000,step:100000,fmt:v=>cop(v),
+  sub:()=>'tarjetas, libranza, hipoteca'},
+ {k:'ratio',n:'Endeudamiento máximo',min:20,max:45,step:1,fmt:v=>v+' %',sub:()=>'los bancos aplican 30–35 %'}
+];
+function renderIng(){
+  $('#inginputs').innerHTML=INGIN.map(c=>`
+   <div class="slot"><label for="i-${c.k}">${c.n}<span class="wv" id="iv-${c.k}">${c.fmt(ING[c.k])}</span></label>
+     <input type="range" id="i-${c.k}" min="${c.min}" max="${c.max}" step="${c.step}" value="${ING[c.k]}" data-k="${c.k}" aria-label="${c.n}">
+     <span class="money" id="is-${c.k}">${c.sub(ING[c.k])}</span></div>`).join('');
+  document.querySelectorAll('#inginputs input').forEach(inp=>inp.addEventListener('input',e=>{
+    ING[e.target.dataset.k]=+e.target.value;renderIng();
+  }));
+
+  const pool=CARS.filter(okPT).filter(c=>FIN.mkt==='todos'||c.c===FIN.mkt)
+    .map(c=>{const a=adj(c),co=costs(c,a),cr=credito(c,co);
+      const req=FIN.on?(cr.cuota+ING.otras)/(ING.ratio/100):Infinity;
+      const cuotaOK=FIN.on?req<=ING.ingreso:true;
+      const ahorroOK=ING.ahorro>=cr.ini;
+      const holgado=FIN.on?req<=ING.ingreso*0.85:false;
+      const st=!ahorroOK||!cuotaOK?'no':holgado?'ok':'mid';
+      return {c,co,cr,req,cuotaOK,ahorroOK,st};})
+    .sort((a,b)=>(FIN.on?a.req-b.req:0)||a.cr.ini-b.cr.ini);
+
+  const alcanza=pool.filter(r=>r.st!=='no').length;
+  const escala=Math.max(ING.ingreso*1.15,...pool.filter(r=>isFinite(r.req)).map(r=>r.req));
+  const pisoOK=ING.ingreso>=PISO;
+  const mm=v=>'$'+(v/1e6).toFixed(1).replace('.',',')+' M';
+
+  $('#ingsum').innerHTML=`
+    <div class="ibox"><span class="k">A tu alcance</span>
+      <span class="n ${alcanza?'ok':'no'}">${alcanza} <span style="font-size:16px;color:var(--ink-soft)">de ${pool.length}</span></span>
+      <span class="d">${alcanza===0?'Con estas condiciones no pasa ninguna. Sube la inicial, alarga el plazo o baja de presupuesto.':alcanza===pool.length?'Pasan todas las opciones del filtro actual.':'El resto queda fuera por cuota, por inicial, o por ambas.'}</span></div>
+    <div class="ibox"><span class="k">Cuota máxima aprobable</span>
+      <span class="n">${cop(Math.max(0,ING.ingreso*ING.ratio/100-ING.otras))}</span>
+      <span class="d">${ING.ratio} % de ${cop(ING.ingreso)}${ING.otras?' menos '+cop(ING.otras)+' que ya debes':''}.</span></div>
+    <div class="ibox"><span class="k">Piso de ingresos</span>
+      <span class="n ${pisoOK?'ok':'no'}">${pisoOK?'Cumple':'No cumple'}</span>
+      <span class="d">Muchos bancos exigen 3 salarios mínimos, hoy ${cop(PISO)}. ${pisoOK?'Estás por encima.':'Con menos, la aprobación depende de codeudor o de historial muy sólido.'}</span></div>`;
+
+  $('#ingrows').innerHTML=pool.map(r=>{
+    const w=isFinite(r.req)?Math.min(100,r.req/escala*100):100;
+    const tag=!r.ahorroOK?['no','Falta inicial']:!r.cuotaOK?['no','No alcanza']:r.st==='ok'?['ok','Alcanza']:['mid','Justo'];
+    return `<div class="irow s-${r.st}">
+      <span class="in">${r.c.n}<em>cuota ${cop(r.cr.cuota)} · inicial ${mm(r.cr.ini)}</em></span>
+      <span class="itrack"><i class="ibar" style="width:${w}%"></i>
+        <span class="iline" style="left:${Math.min(100,ING.ingreso/escala*100)}%" title="Tu ingreso: ${cop(ING.ingreso)}"></span></span>
+      <span class="iv">${isFinite(r.req)?mm(r.req):'—'}<small>ingreso requerido</small></span>
+      <span class="itag ${tag[0]}">${tag[1]}</span></div>`;
+  }).join('');
+
+  const faltaIni=pool.filter(r=>!r.ahorroOK).length;
+  const faltaCuota=pool.filter(r=>r.ahorroOK&&!r.cuotaOK).length;
+  $('#ingnote').textContent=!FIN.on
+    ? `De contado no hay cuota que aprobar: el único filtro es tener el precio completo. Con ${mm(ING.ahorro)} ahorrados alcanzas ${alcanza} de ${pool.length} opciones.`
+    : `Con ${cop(ING.ingreso)} de ingreso familiar y ${mm(ING.ahorro)} ahorrados, pasan ${alcanza} de ${pool.length}. `+
+      (faltaIni?`${faltaIni} ${faltaIni===1?'queda fuera':'quedan fuera'} porque no te alcanza la inicial — ese filtro se resuelve ahorrando, no ganando más. `:'')+
+      (faltaCuota?`${faltaCuota} ${faltaCuota===1?'queda fuera':'quedan fuera'} por capacidad de pago. `:'')+
+      `La barra mide el ingreso que el banco te exigiría; la línea negra, el que tienes.`;
+}
+
+let lbTop='10';
+// ---------- navegación y secciones plegables ----------
+const NAVSHORT={'Los pesos son tuyos':'Pesos','Tabla general':'Tabla general','Prueba de robustez':'Robustez',
+ 'Criterio por criterio':'Criterios','La cuenta mensual':'Costos y crédito','La corrección que nadie aplica':'Altura',
+ 'El nombre del modelo miente':'Versiones','Nuevo contra usado':'Nuevo vs usado','Cómo leer esto':'Metodología'};
+const ABIERTAS=['Los pesos son tuyos','Tabla general','Prueba de robustez'];
+const UIKEY='matrizCarrosBogota.ui';
+function initShell(){
+  let guardado={};
+  try{guardado=JSON.parse(localStorage.getItem(UIKEY)||'{}');}catch(e){}
+  const secs=[...document.querySelectorAll('section')];
+  secs.forEach((sec,i)=>{
+    const h2=sec.querySelector('h2'), head=sec.querySelector('.sec-head');
+    if(!h2||!head)return;
+    const t=h2.textContent.trim(), id='s'+String(i+1).padStart(2,'0');
+    sec.id=id; sec.dataset.title=t;
+    const body=document.createElement('div');
+    body.className='sec-body';
+    let n=head.nextSibling;
+    while(n){const sig=n.nextSibling;body.appendChild(n);n=sig;}
+    sec.appendChild(body);
+    head.setAttribute('role','button');
+    head.setAttribute('tabindex','0');
+    const ab=guardado[id]!==undefined?guardado[id]:ABIERTAS.includes(t);
+    head.setAttribute('aria-expanded',String(ab));
+    sec.classList.toggle('sec-closed',!ab);
+    head.insertAdjacentHTML('beforeend','<span class="caret" aria-hidden="true">▾</span>');
+    const tog=()=>{
+      const ahora=head.getAttribute('aria-expanded')==='true';
+      head.setAttribute('aria-expanded',String(!ahora));
+      sec.classList.toggle('sec-closed',ahora);
+      guardarUI();
+    };
+    head.addEventListener('click',tog);
+    head.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tog();}});
+  });
+  function guardarUI(){
+    const o={};
+    document.querySelectorAll('section').forEach(s=>{
+      const h=s.querySelector('.sec-head'); if(h)o[s.id]=h.getAttribute('aria-expanded')==='true';
+    });
+    try{localStorage.setItem(UIKEY,JSON.stringify(o));}catch(e){}
+  }
+  document.getElementById('navitems').innerHTML=secs.filter(s=>s.dataset.title).map((s,i)=>
+    `<a href="#${s.id}" data-s="${s.id}"><b>${String(i+1).padStart(2,'0')}</b>${esc(NAVSHORT[s.dataset.title]||s.dataset.title)}</a>`).join('');
+  document.querySelectorAll('#navitems a').forEach(a=>a.addEventListener('click',()=>{
+    const s=document.getElementById(a.dataset.s), h=s&&s.querySelector('.sec-head');
+    if(h&&h.getAttribute('aria-expanded')==='false'){h.setAttribute('aria-expanded','true');s.classList.remove('sec-closed');guardarUI();}
+  }));
+  const btn=document.getElementById('navall');
+  btn.addEventListener('click',()=>{
+    const abrir=btn.textContent.startsWith('Expandir');
+    document.querySelectorAll('section').forEach(s=>{
+      const h=s.querySelector('.sec-head'); if(!h)return;
+      h.setAttribute('aria-expanded',String(abrir));
+      s.classList.toggle('sec-closed',!abrir);
+    });
+    btn.textContent=abrir?'Contraer todo':'Expandir todo';
+    guardarUI();
+  });
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(es=>{
+      es.forEach(e=>{
+        const a=document.querySelector(`#navitems a[data-s="${e.target.id}"]`);
+        if(a)a.classList.toggle('on',e.isIntersecting&&e.intersectionRatio>0);
+      });
+      const vis=[...document.querySelectorAll('#navitems a.on')];
+      if(vis.length>1)vis.slice(1).forEach(a=>a.classList.remove('on'));
+    },{rootMargin:'-15% 0px -70% 0px'});
+    secs.forEach(s=>{if(s.id)io.observe(s);});
+  }
+}
+
+const board=$('#board');
+let open=null;
+
+function dossier(c,a,co){
+  const bars=CATS.map(k=>{
+    const m=MONEY.includes(k.k);
+    return `<div class="cb"><span>${k.n}</span><span class="t"><i style="width:${a.s[k.k]}%;background:${m?'var(--go)':'var(--indigo-lite)'}"></i></span><span class="v">${a.s[k.k]}</span></div>`;
+  }).join('');
+  return `<div class="dossier"><div class="dos-grid">
+    <div>
+      <div class="dos-h">Cuenta mensual · ${CFG.km.toLocaleString('es-CO')} km al mes</div>
+      <dl class="spec bill">
+        <dt>${c.ft==='ev'?'Energía eléctrica':'Gasolina '+c.ft}</dt><dd>${cop(co.comb)}</dd>
+        <dt>Taller y servicio</dt><dd>${cop(co.taller)}</dd>
+        <dt>Llantas (rin ${a.rin}, amortizadas)</dt><dd>${cop(co.llantas)}</dd>
+        <dt>SOAT (${c.cc?c.cc+' cc':'eléctrico'}, ${c.sc})</dt><dd>${cop(co.soat)}</dd>
+        <dt>Impuesto (${(co.tasa*100).toFixed(2).replace('.',',')} % del avalúo)</dt><dd>${cop(co.imp)}</dd>
+        <dt>Revisión técnico-mecánica</dt><dd>${co.rtm?cop(co.rtm):'exento'}</dd>
+        <dt>Seguro todo riesgo</dt><dd>${CFG.seguro?cop(co.seg):'no incluido'}</dd>
+        <span class="sep"></span>
+        <dt><b>Desembolso mensual</b></dt><dd class="big">${cop(co.desemb)}</dd>
+        <dt>Depreciación (${(co.tasaDep*100).toFixed(1).replace('.',',')} % anual)</dt><dd>${CFG.deprec?cop(co.dep):'no incluida'}</dd>
+        <dt><b>Costo real mensual</b></dt><dd class="big">${cop(co.total)}</dd>
+      </dl>
+      <div class="dos-h" style="margin-top:22px">Ficha técnica</div>
+      <dl class="spec">
+        <dt>Condición</dt><dd>${c.c===N?'Cero kilómetros':'Usado'}</dd>
+        <dt>Motorización</dt><dd>${c.eng}</dd>
+        <dt>Potencia declarada</dt><dd>${c.hp} hp · ${c.tq}</dd>
+        <dt>Potencia en Bogotá</dt><dd style="color:var(--signal)">≈ ${c.hpAlt} hp (${c.ptAlt} hp/t)</dd>
+        <dt>Peso · baúl</dt><dd>${c.kg} kg · ${c.tr} L</dd>
+        <dt>Transmisión</dt><dd>${c.gb}</dd>
+        <dt>Rendimiento</dt><dd>${c.ft==='ev'?c.kwh100+' kWh/100 km':c.kpg+' km/gal'}</dd>
+        <dt>Airbags · despeje</dt><dd>${c.ab} · ${c.cl} mm</dd>
+        <dt>Pico y placa</dt><dd>${c.s.picoplaca>60?'Exento (requiere inscripción)':'Aplica restricción'}</dd>
+        <dt>Precio · nivel ${TRIMS[trim].lbl.toLowerCase()}</dt><dd>${money(a.p)}</dd>
+      </dl>
+    </div>
+    <div>
+      <div class="dos-h">Cómo cambia entre versiones</div>
+      <p class="ladder">${c.tinfo}</p>
+      <div class="dispbar"><span>APERTURA DE GAMA</span><span class="t"><i style="width:${c.disp}%"></i></span><span>${c.disp}/100</span></div>
+      <div class="dos-h">${c.c===N?'Lo que hay que sopesar':'Qué revisar antes de comprar'}</div>
+      <ul class="flags">${c.bad.map(x=>`<li>${x}</li>`).join('')}</ul>
+      <div class="dos-h" style="margin-top:22px">A favor</div>
+      <ul class="flags good">${c.good.map(x=>`<li>${x}</li>`).join('')}</ul>
+      <div class="dos-h" style="margin-top:22px">Puntajes</div>
+      <div class="catbars">${bars}</div>
+      <p style="font-family:var(--mono);font-size:10px;color:var(--ink-soft);margin-top:10px">EN VERDE, LOS CUATRO CRITERIOS CALCULADOS EN PESOS.</p>
+    </div>
+    <p class="verdict">${c.v}</p>
+  </div></div>`;
+}
+
+function renderCosts(rows){
+  const list=[...rows].sort((a,b)=>a.co.total-b.co.total);
+  const lo=Math.min(...rows.map(r=>r.co.total)),hi=Math.max(...rows.map(r=>r.co.total));
+  $('#costbody').innerHTML=list.map(r=>{
+    const cl=r.co.total===lo?'lo':r.co.total===hi?'hi':'';
+    return `<tr>
+      <td>${r.c.n}${r.c.c===N?' <span class="tag nuevo">0 KM</span>':''}</td>
+      <td>${cop(r.co.comb)}</td><td>${cop(r.co.tallerLlantas)}</td><td>${cop(r.co.fijos)}</td>
+      <td>${CFG.seguro?cop(r.co.seg):'—'}</td><td>${CFG.deprec?cop(r.co.dep):'—'}</td>
+      <td class="des">${cop(r.co.desemb)}</td><td class="tot ${cl}">${cop(r.co.total)}</td></tr>`;
+  }).join('');
+  $('#costnote').textContent=`Recorriendo ${CFG.km.toLocaleString('es-CO')} km al mes, entre el más barato (${list[0].c.n}, ${cop(list[0].co.total)}) y el más caro (${list[list.length-1].c.n}, ${cop(list[list.length-1].co.total)}) hay una diferencia de ${cop(list[list.length-1].co.total-list[0].co.total)} mensuales, o ${cop((list[list.length-1].co.total-list[0].co.total)*12)} al año.`;
+}
+
+function render(){
+  renderWeights();
+  renderSaved();
+  renderPT();
+  renderContext();
+  $('#trimnote').textContent=TRIMS[trim].note;
+  const prev={};
+  board.querySelectorAll('.row').forEach(r=>prev[r.dataset.id]=r.getBoundingClientRect().top);
+  const all=ranked(W).filter(r=>okPT(r.c));
+  renderCosts(all);
+  const shown=all.filter(r=>filter==='todos'||r.c.c===filter);
+  const vis=lbTop==='all'?shown:shown.slice(0,Math.min(+lbTop,shown.length));
+  $('#lbtop').innerHTML=[['5','Top 5'],['10','Top 10'],['all','Todas']]
+    .map(([k,l])=>`<button class="filt" data-t="${k}" aria-pressed="${k===lbTop}">${l}</button>`).join('');
+  document.querySelectorAll('#lbtop .filt').forEach(b=>b.addEventListener('click',()=>{lbTop=b.dataset.t;render();}));
+  const resto=shown.length-vis.length;
+  $('#lbmore').innerHTML=resto>0
+    ? `<button id="lbexp">Ver las ${resto} restantes ↓</button>`
+    : (shown.length>10?`<button id="lbcol">Contraer a las 10 mejores ↑</button>`:'');
+  board.innerHTML=vis.map((r,i)=>{
+    const c=r.c,pos=i+1,gpos=all.findIndex(x=>x.c.id===c.id)+1,d=baseOrder[c.id]-gpos;
+    const dl=d>0?`<small class="up">▲ ${d}</small>`:d<0?`<small class="down">▼ ${-d}</small>`:`<small class="same">—</small>`;
+    const warn=c.disp>=75?`<span class="tag warn">VERIFICAR VERSIÓN</span>`:'';
+    return `<div class="row${pos<=4?' top':''}" data-id="${c.id}" role="button" tabindex="0" aria-expanded="${open===c.id}" aria-label="${c.n}, posición ${pos}">
+      <span class="rk">${pos}${dl}</span>
+      <span class="cell-nm"><span class="car-nm">${c.n}<span class="tag ${c.c}">${c.c===N?'0 KM':'USADO'}</span>${warn}</span>
+        <span class="car-meta">${c.body.toUpperCase()} · ${ASPN[c.asp].toUpperCase()} · ${c.hpAlt} HP EN BOGOTÁ · ${c.tr} L</span></span>
+      <span class="price num">${money(r.a.p)}<span class="mo">${cop(r.co.total)}/mes</span><small>${c.yr}</small></span>
+      <span class="score">${r.v.toFixed(1)}<small>PUNTAJE</small></span>
+      <span class="meter"><i style="width:${r.v}%"></i></span>
+      <span class="chev">${open===c.id?'▲':'▼'}</span>
+    </div>${dossier(c,r.a,r.co)}`;
+  }).join('');
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    board.querySelectorAll('.row').forEach(r=>{
+      const p=prev[r.dataset.id];if(p==null)return;
+      const dy=p-r.getBoundingClientRect().top;
+      if(Math.abs(dy)<1)return;
+      r.animate([{transform:`translateY(${dy}px)`},{transform:'none'}],{duration:520,easing:'cubic-bezier(.2,.75,.25,1)'});
+    });
+  }
+  board.querySelectorAll('.row').forEach(r=>{
+    const go=()=>{open=open===r.dataset.id?null:r.dataset.id;render();};
+    r.addEventListener('click',go);
+    r.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});
+  });
+  const exp=document.getElementById('lbexp'),col=document.getElementById('lbcol');
+  if(exp)exp.addEventListener('click',()=>{lbTop='all';render();});
+  if(col)col.addEventListener('click',()=>{lbTop='10';render();
+    document.getElementById('board').scrollIntoView({block:'start'});});
+  renderCat(all);
+  renderRobust();
+  renderFin();
+}
+
+let curCat=CATS[0].k;
+$('#cattabs').innerHTML=CATS.map((c,i)=>`<button class="cat-tab" role="tab" data-k="${c.k}" aria-selected="${i===0}">${c.n}</button>`).join('');
+document.querySelectorAll('.cat-tab').forEach(t=>t.addEventListener('click',()=>{
+  curCat=t.dataset.k;
+  document.querySelectorAll('.cat-tab').forEach(x=>x.setAttribute('aria-selected','false'));
+  t.setAttribute('aria-selected','true');renderCat(ranked(W));
+}));
+function renderCat(all){
+  const cat=CATS.find(c=>c.k===curCat);
+  const gl={},vals={},mon={};
+  all.forEach((r,i)=>{
+    gl[r.c.id]=i+1;vals[r.c.id]=r.a.s[curCat];
+    mon[r.c.id]=curCat==='consumo'?r.co.comb:curCat==='mantenimiento'?r.co.tallerLlantas
+      :curCat==='costofijo'?r.co.fijos+r.co.seg:curCat==='reventa'?r.co.dep:null;
+  });
+  const list=all.map(r=>r.c).sort((a,b)=>vals[b.id]-vals[a.id]);
+  $('#catwhy').innerHTML=`<h3>${cat.long}</h3><p>${cat.why}</p>
+    <p style="font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);letter-spacing:.03em;border-top:1px solid var(--rule);padding-top:12px;margin-top:16px">
+    PESO ACTUAL: ${W[cat.k]} · POR DEFECTO: ${cat.w}<br>NIVEL: ${TRIMS[trim].lbl.toUpperCase()}<br>
+    LÍDER: ${list[0].n.toUpperCase()} (${MONEY.includes(curCat)?cop(mon[list[0].id])+'/MES':vals[list[0].id]})</p>`;
+  $('#catlist').innerHTML=list.map((c,i)=>{
+    const d=gl[c.id]-(i+1);
+    const t=d>0?`<span class="up">gral. #${gl[c.id]} ▼${d}</span>`:d<0?`<span class="down">gral. #${gl[c.id]} ▲${-d}</span>`:`<span class="same">gral. #${gl[c.id]} =</span>`;
+    return `<div class="crow"><span class="cr">${String(i+1).padStart(2,'0')}</span>
+      <span class="cn">${c.n}${c.c===N?' ·0KM':''}</span>
+      <span class="ct"><i style="width:${vals[c.id]}%"></i></span>
+      <span class="cv">${MONEY.includes(curCat)?cop(mon[c.id]).replace('$',''):vals[c.id]}</span><span class="cs">${t}</span></div>`;
+  }).join('');
+}
+render();
+initShell();
+</script>
+</body>
+</html>
